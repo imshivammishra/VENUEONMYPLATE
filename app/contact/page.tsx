@@ -1,0 +1,94 @@
+import type { Metadata } from "next";
+import { Suspense } from "react";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import EnquiryForm from "@/components/EnquiryForm";
+import FAQ from "@/components/FAQ";
+import Reveal from "@/components/Reveal";
+import { generalFaqs } from "@/lib/data";
+import { SITE } from "@/lib/site";
+import { buildMetadata, faqJsonLd } from "@/lib/seo";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Contact — request your personal venue shortlist",
+  description:
+    "Tell Venue On My Plate your city, event type, date and guest count. Our team replies within one business day with curated venue options.",
+  path: "/contact",
+});
+
+export default function ContactPage() {
+  return (
+    <div className="bg-white">
+      <div className="mx-auto max-w-7xl px-5 pt-28 pb-16 md:px-8 md:pt-36">
+        <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Contact" }]} />
+        <div className="mt-6 grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:gap-12">
+          <div>
+            <Reveal>
+              <div className="relative overflow-hidden rounded-3xl bg-black p-8 text-white md:p-10">
+                <div className="relative">
+                  <p className="s-eyebrow text-white/60">Concierge · Find my venue</p>
+                  <h1 className="s-headline font-display mt-3 text-3xl leading-tight text-balance md:text-4xl">
+                    Tell us the occasion.
+                  </h1>
+                  <div aria-hidden="true" className="mt-5 h-px w-32 bg-white/20" />
+                  <p className="mt-4 text-[15px] leading-relaxed text-white/70">
+                    Share the essentials below. For anything urgent, write to {SITE.email} with
+                    your event date in the subject.
+                  </p>
+                  <dl className="mt-8 space-y-5 text-sm">
+                    <div className="border-t border-white/15 pt-4">
+                      <dt className="text-[13px] font-semibold text-white/60">Email</dt>
+                      <dd className="mt-1 font-medium text-white">{SITE.email}</dd>
+                    </div>
+                    <div className="border-t border-white/15 pt-4">
+                      <dt className="text-[13px] font-semibold text-white/60">Phone</dt>
+                      <dd className="mt-1">
+                        <a href={SITE.phoneHref} className="font-medium text-white hover:underline">
+                          {SITE.phoneDisplay}
+                        </a>
+                      </dd>
+                    </div>
+                    <div className="border-t border-white/15 pt-4">
+                      <dt className="text-[13px] font-semibold text-white/60">Hours</dt>
+                      <dd className="mt-1 text-white/80">{SITE.hours}</dd>
+                    </div>
+                  </dl>
+                  <div className="mt-8 inline-flex items-center gap-3 rounded-2xl border border-white/20 bg-white/10 px-5 py-3 backdrop-blur">
+                    <p className="text-[13px] font-medium text-white">
+                      Replies {SITE.responseNote.toLowerCase()}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+            <Reveal delay={100}>
+              <div className="mt-8">
+                <h2 className="font-display text-2xl text-[#1d1d1f]">
+                  Good to know
+                </h2>
+                <div className="mt-4">
+                  <FAQ faqs={generalFaqs} />
+                </div>
+              </div>
+            </Reveal>
+          </div>
+          <Reveal delay={120} scale className="md:sticky md:top-28 md:self-start">
+            <div className="rounded-[18px] bg-white p-6 shadow-sm ring-1 ring-black/5 md:p-10">
+              <p className="s-eyebrow text-[#6e6e73]">Request proposal</p>
+              <h2 className="font-display mt-2 text-2xl text-[#1d1d1f]">Your celebration, in brief</h2>
+              <div aria-hidden="true" className="mt-4 h-px w-32 bg-[#e8e8ed]" />
+              <div className="mt-6">
+                <Suspense fallback={<p className="text-sm text-[#6e6e73]">Loading form…</p>}>
+                  <EnquiryForm />
+                </Suspense>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(generalFaqs)) }}
+        />
+      </div>
+    </div>
+  );
+}
