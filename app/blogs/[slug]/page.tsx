@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
-import BlogCard from "@/components/BlogCard";
+import BlogCard from "@/components/venues/BlogCard";
 import CTASection from "@/components/home/CTASection";
 import Reveal from "@/components/ui/Reveal";
 import { getBlogBySlug, getBlogs } from "@/lib/api";

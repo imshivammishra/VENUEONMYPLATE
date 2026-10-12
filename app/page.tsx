@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { BadgePercent, Building2, CalendarCheck, Camera, Flower2, PhoneCall, Sparkles, Star, UtensilsCrossed, Wallet } from "lucide-react";
-import BlogCard from "@/components/BlogCard";
+import BlogCard from "@/components/venues/BlogCard";
 import CTASection from "@/components/home/CTASection";
 import CityCard from "@/components/venues/CityCard";
 import EnquiryForm from "@/components/forms/EnquiryForm";
@@ -12,7 +12,6 @@ import Reveal from "@/components/ui/Reveal";
 import VideoCard from "@/components/home/VideoCard";
 import CinematicBand from "@/components/home/CinematicBand";
 import SectionHeading, { SectionLink } from "@/components/home/SectionHeading";
-import VenueCard from "@/components/venues/VenueCard";
 import { getBlogs, getCities, getVenues } from "@/lib/api";
 import { generalFaqs } from "@/lib/data";
 import { faqJsonLd } from "@/lib/seo";
@@ -76,9 +75,6 @@ const TESTIMONIALS = [
 
 export default async function HomePage() {
   const [venues, cities, blogs] = await Promise.all([getVenues(), getCities(), getBlogs()]);
-  const featured = (venues.filter((v) => v.featured).slice(0, 4).length > 0
-    ? venues.filter((v) => v.featured).slice(0, 4)
-    : venues.slice(0, 4));
 
   return (
     <>
@@ -113,26 +109,6 @@ export default async function HomePage() {
         />
         <h2 id="highlights-heading" className="sr-only">Highlights by occasion</h2>
         <HomeTabs venues={venues} />
-      </section>
-
-      {/* Recommended for you — Samsung product grid */}
-      <section aria-labelledby="featured-heading" className="band-blush border-t border-[#e7ce9c]">
-        <div className="mx-auto max-w-[1440px] px-5 py-14 md:px-8 md:py-20">
-          <SectionHeading
-            eyebrow="Featured venues"
-            title="Recommended for you"
-            copy="Private shortlists that feel effortless to scan — every property visited or vetted."
-          />
-          <h2 id="featured-heading" className="sr-only">Featured venues</h2>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {featured.map((v) => (
-              <VenueCard key={v.slug} venue={v} />
-            ))}
-          </div>
-          <div className="mt-10 text-center">
-            <SectionLink href="/venues">View all venues</SectionLink>
-          </div>
-        </div>
       </section>
 
       {/* Luxury banner — Samsung split feature */}
