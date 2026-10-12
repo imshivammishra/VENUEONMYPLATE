@@ -124,7 +124,7 @@ export default function EnquiryForm({ venueName }: { venueName?: string }) {
       {status === "error" && (
         <p role="alert" className="border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-900">
           Something went wrong sending your enquiry. Please try again, or write to us at
-          hello@venueonmyplate.in.
+          contact@venueonmyplate.in.
         </p>
       )}
       <button

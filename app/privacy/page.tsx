@@ -20,7 +20,7 @@ const SECTIONS = [
   },
   {
     title: "How we protect it",
-    body: "Enquiry data is transmitted to our backend API over HTTPS and retained only as long as needed for follow-up and legal compliance. Write to hello@venueonmyplate.in to request access or deletion.",
+    body: "Enquiry data is transmitted to our backend API over HTTPS and retained only as long as needed for follow-up and legal compliance. Write to contact@venueonmyplate.in to request access or deletion.",
   },
   {
     title: "What we never handle here",

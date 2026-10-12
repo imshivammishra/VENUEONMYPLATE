@@ -6,7 +6,7 @@
 export const SITE = {
   name: "Venue On My Plate",
   tagline: "Find a venue worthy of your occasion.",
-  email: "hello@venueonmyplate.in",
+  email: "contact@venueonmyplate.in",
   phoneDisplay: "+91 94624 60555",
   phoneHref: "tel:+919462460555",
   whatsapp: "",

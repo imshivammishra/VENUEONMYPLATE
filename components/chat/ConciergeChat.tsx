@@ -98,7 +98,7 @@ export default function ConciergeChat({ venues }: { venues: Venue[] }) {
             }).toString();
             pushBot(
               {
-                text: `Perfect — ${done.name}, our concierge will call ${done.phone} about ${done.city} venues within one business day. Tap below to send your details instantly, or just wait for our call.`,
+                text: `Perfect — ${done.name}, our venue expert will call ${done.phone} about ${done.city} venues within one business day. Tap below to send your details instantly, or just wait for our call.`,
                 links: [{ label: "Send my details now", href: `/contact?${q}` }],
               },
               ["What are prices like?", "See all venues"]
@@ -114,7 +114,7 @@ export default function ConciergeChat({ venues }: { venues: Venue[] }) {
         setTimeout(() => {
           setTyping(false);
           setLead("awaitName");
-          pushBot({ text: "With pleasure — I will arrange a callback from our concierge. What is your name?" });
+          pushBot({ text: "With pleasure — I will arrange a callback from our team. What is your name?" });
         }, 800);
         return;
       }
@@ -139,7 +139,7 @@ export default function ConciergeChat({ venues }: { venues: Venue[] }) {
         setTyping(false);
         pushBot(
           {
-            text: "Namaste! I am Plate, your venue concierge. Ask me about venues by city, pricing, availability, visits — anything celebration. What are you planning?",
+            text: "Namaste! I am Plate, your venue expert. Ask me about venues by city, pricing, availability, visits — anything celebration. What are you planning?",
           },
           QUICK_QUESTIONS
         );
@@ -186,7 +186,7 @@ export default function ConciergeChat({ venues }: { venues: Venue[] }) {
             setNudge(false);
             setOpen(true);
           }}
-          aria-label="Chat with our venue concierge"
+          aria-label="Chat with our venue expert"
           className="group fixed right-4 bottom-6 z-50 md:right-6"
         >
           <span className="relative grid h-[76px] w-[76px] place-items-center">
@@ -195,7 +195,7 @@ export default function ConciergeChat({ venues }: { venues: Venue[] }) {
             </span>
           </span>
           <span className="mt-1 block rounded-full bg-black/70 px-2.5 py-1 text-center text-[10px] font-semibold tracking-wider text-white uppercase opacity-0 backdrop-blur transition group-hover:opacity-100">
-            Concierge
+            Venue expert
           </span>
         </button>
       )}
@@ -203,7 +203,7 @@ export default function ConciergeChat({ venues }: { venues: Venue[] }) {
       {/* Panel */}
       {open && (
         <section
-          aria-label="Venue concierge chat"
+          aria-label="Venue expert chat"
           className="chat-pop fixed inset-x-4 bottom-24 z-50 flex max-h-[72vh] min-h-[480px] flex-col overflow-hidden rounded-[22px] bg-white shadow-[0_36px_90px_-24px_rgba(90,19,14,0.4)] ring-1 ring-[#c19a3f]/40 md:inset-x-auto md:right-6 md:bottom-6 md:w-[392px]"
         >
           {/* Header */}
@@ -213,7 +213,7 @@ export default function ConciergeChat({ venues }: { venues: Venue[] }) {
                 <Image src="/images/logo-mark.png" alt="" width={44} height={44} className="h-10 w-10 object-contain" />
               </span>
               <div className="min-w-0 flex-1">
-                <p className="text-[15px] font-semibold leading-tight">Plate Concierge</p>
+                <p className="text-[15px] font-semibold leading-tight">Plate · Venue Expert</p>
                 <p className="flex items-center gap-1.5 text-[12px] text-white/70">
                   <span className="h-2 w-2 rounded-full bg-emerald-400" /> Online · replies instantly
                 </p>

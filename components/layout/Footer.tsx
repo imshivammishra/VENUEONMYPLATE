@@ -82,9 +82,9 @@ export default function Footer() {
           <p className="flex flex-wrap items-center gap-x-5 gap-y-1">
             <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rotate-45 bg-[#7a1e16]" /> Private shortlists</span>
             <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rotate-45 bg-[#7a1e16]" /> Verified venues</span>
-            <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rotate-45 bg-[#7a1e16]" /> Concierge support</span>
+            <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rotate-45 bg-[#7a1e16]" /> Expert support</span>
           </p>
-          <p className="mt-3">Copyright © 1995-2026 Venue On My Plate. All rights reserved.</p>
+          <p className="mt-3">Copyright © {new Date().getFullYear()} Venue On My Plate. All rights reserved.</p>
           <div className="mt-2 flex gap-4">
             <Link href="/privacy" className="hover:text-[#1d1d1f] hover:underline">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-[#1d1d1f] hover:underline">Terms of Use</Link>

@@ -104,7 +104,7 @@ export default function SocialProof() {
             <Sparkles size={13} /> Welcome to Venue On My Plate
           </p>
           <p className="font-display mt-1.5 text-[20px] font-semibold text-white">
-            India&apos;s private venue concierge.
+            India&apos;s private venue experts.
           </p>
           <p className="mx-auto mt-1 max-w-sm text-[13px] leading-relaxed text-white/70">
             Palaces, resorts and garden venues — shortlisted for your date, guests and budget within one business day.

@@ -104,7 +104,7 @@ export default async function HomePage() {
       <section aria-labelledby="highlights-heading" className="mx-auto max-w-[1440px] px-5 py-14 md:px-8 md:py-20">
         <SectionHeading
           eyebrow="This season's highlights"
-          title="One shortlist for every kind of celebration"
+          title="Every celebration starts with the right venue"
           copy="Switch by occasion — the same private, quote-led discovery behind every option."
         />
         <h2 id="highlights-heading" className="sr-only">Highlights by occasion</h2>
@@ -199,7 +199,7 @@ export default async function HomePage() {
         <div className="mx-auto max-w-[1024px] px-5 py-14 md:px-6 md:py-20">
           <SectionHeading
             eyebrow="End-to-end services"
-            title="Everything for your celebration"
+            title="Your entire wedding, handled"
             copy="One team for venues, decor, catering, photography and planning — booked together, managed together."
           />
           <Reveal delay={120}>
@@ -231,7 +231,7 @@ export default async function HomePage() {
         <div className="mx-auto max-w-[1440px] px-5 py-14 md:px-8 md:py-20">
           <SectionHeading
             eyebrow="Why we are better"
-            title="Built for exceptional venue decisions"
+            title="Why families trust us"
             copy="Exclusive pricing, private proposal support, and practical venue signals — compare more than photographs."
           />
           <Reveal delay={120}>
@@ -259,7 +259,7 @@ export default async function HomePage() {
       <section id="how-it-works" aria-label="How it works" className="mx-auto max-w-[1440px] px-5 py-14 md:px-8 md:py-20">
         <SectionHeading
           eyebrow="How it works"
-          title="Begin your venue request in 3 refined steps"
+          title="Your venue in 3 easy steps"
         />
         <Reveal delay={120}>
         <ol className="mt-10 grid gap-5 md:grid-cols-3">
@@ -289,7 +289,7 @@ export default async function HomePage() {
         <div className="mx-auto max-w-[1440px] px-5 py-14 md:px-8 md:py-20">
           <SectionHeading
             eyebrow="Events gallery"
-            title="From vision to extraordinary celebration"
+            title="Steal-worthy real celebrations"
             copy="Browse by mood, guest experience, and the level of occasion you want to create."
           />
           <Reveal delay={120}>
@@ -336,7 +336,7 @@ export default async function HomePage() {
       <section aria-label="Testimonials" className="mx-auto max-w-[1440px] px-5 py-14 md:px-8 md:py-20">
         <SectionHeading
           eyebrow="Client testimonials"
-          title="What families say about our private venue discovery"
+          title="Loved by families across India"
           copy="Families value a calmer way to compare ambience, hospitality, privacy, and the final proposal."
         />
         <Reveal delay={120}>
@@ -371,7 +371,7 @@ export default async function HomePage() {
       <section aria-labelledby="journal-heading" className="band-blush border-t border-[#e7ce9c]">
         <div className="mx-auto max-w-[1440px] px-5 py-14 md:px-8 md:py-20">
           <div className="flex flex-wrap items-end justify-between gap-6">
-            <SectionHeading align="left" eyebrow="Journal" title="Luxury venue planning ideas" />
+            <SectionHeading align="left" eyebrow="Journal" title="Ideas worth stealing" />
             <SectionLink href="/blogs">View all blogs</SectionLink>
           </div>
           <h2 id="journal-heading" className="sr-only">Latest articles</h2>
@@ -393,7 +393,7 @@ export default async function HomePage() {
             <SectionHeading
               align="left"
               eyebrow="Support"
-              title="Get your venue options"
+              title="Get venues picked for you"
               copy="Two minutes now saves two weeks of calling venues. We reply within one business day — by call."
             />
             <h2 id="enquiry-heading" className="sr-only">Enquiry form</h2>

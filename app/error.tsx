@@ -6,7 +6,7 @@ export default function Error({ reset }: { error: Error & { digest?: string }; r
       <p className="s-eyebrow text-[#6e6e73]">Something went wrong</p>
       <h1 className="s-headline font-display mt-4 text-4xl text-[#1d1d1f]">The table wasn&apos;t set properly.</h1>
       <p className="mx-auto mt-4 max-w-md text-[#424245]">
-        Please try again — and if it keeps happening, write to hello@venueonmyplate.in.
+        Please try again — and if it keeps happening, write to contact@venueonmyplate.in.
       </p>
       <button
         type="button"

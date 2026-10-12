@@ -25,7 +25,7 @@ export default function ContactPage() {
             <Reveal>
               <div className="relative overflow-hidden rounded-3xl bg-black p-8 text-white md:p-10">
                 <div className="relative">
-                  <p className="s-eyebrow text-white/60">Concierge · Find my venue</p>
+                  <p className="s-eyebrow text-white/60">Expert help · Find my venue</p>
                   <h1 className="s-headline font-display mt-3 text-3xl leading-tight text-balance md:text-4xl">
                     Tell us the occasion.
                   </h1>

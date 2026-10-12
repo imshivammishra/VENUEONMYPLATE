@@ -11,7 +11,7 @@ const HERO_VIDEO = "/videos/hero-bg.mp4";
 const SLIDES = [
   {
     eyebrow: "Venue On My Plate",
-    title: "Find a venue worthy of your occasion.",
+    title: "A venue as unforgettable as your love story.",
     copy: "Palaces, lakefront estates and private resorts — curated for families who expect every detail to feel considered.",
     image: "https://images.pexels.com/photos/38951530/pexels-photo-38951530.jpeg?auto=compress&cs=tinysrgb&w=1600",
     alt: "White floral wedding stage on a green lawn",
@@ -20,7 +20,7 @@ const SLIDES = [
   },
   {
     eyebrow: "Udaipur · Jaipur · Goa",
-    title: "Destination weddings, handled privately.",
+    title: "Destination weddings without the drama.",
     copy: "From City Palace sunsets to barefoot luxury in Goa — compare ambience, privacy, rooms and service fit before you visit.",
     image: "/images/udaipur-city.jpg",
     alt: "Lake Palace in Udaipur",
@@ -28,13 +28,13 @@ const SLIDES = [
     secondary: { label: "Get a private quote", href: "/contact" },
   },
   {
-    eyebrow: "Concierge · 1 business day",
-    title: "Proposals shaped around your celebration.",
+    eyebrow: "Shortlist in a day",
+    title: "Your dream shortlist, in one day flat.",
     copy: "Share your city, date, guest count and mood. Receive a bespoke shortlist with private quote-led options in one business day.",
     image: "https://images.pexels.com/photos/32854443/pexels-photo-32854443.jpeg?auto=compress&cs=tinysrgb&w=1600",
     alt: "White draped wedding mandap with crystal chandelier",
     primary: { label: "How it works", href: "#how-it-works" },
-    secondary: { label: "Talk to concierge", href: "/contact" },
+    secondary: { label: "Talk to an expert", href: "/contact" },
   },
 ];
 

@@ -145,7 +145,7 @@ export function conciergeReply(raw: string, venues: Venue[]): BotReply {
       };
     }
     return {
-      text: `${city} is one of our strongest circuits — palaces, resorts and garden venues. Our full ${city} board lives here, and a concierge shortlist takes one business day.`,
+      text: `${city} is one of our strongest circuits — palaces, resorts and garden venues. Our full ${city} board lives here, and an expert shortlist takes one business day.`,
       links: [{ label: `Explore ${city}`, href: `/cities` }, ...CONTACT_LINKS],
       suggest: ["What are prices like?", "Request callback"],
     };
@@ -154,7 +154,7 @@ export function conciergeReply(raw: string, venues: Venue[]): BotReply {
   // 3. Greetings
   if (has(low, "hello", "hi", "hey", "namaste", "good morning", "good evening", "good afternoon", "ram ram")) {
     return {
-      text: "Namaste! I am Plate, your venue concierge. I can suggest venues by city and budget, explain pricing, check availability, plan visits — or connect you to a human. What are you celebrating?",
+      text: "Namaste! I am Plate, your venue expert. I can suggest venues by city and budget, explain pricing, check availability, plan visits — or connect you to a human. What are you celebrating?",
       links: [{ label: "Browse all venues", href: "/venues" }],
       suggest: ["Wedding venues in Udaipur", "What are prices like?", "How do I book?"],
     };
@@ -331,7 +331,7 @@ export function conciergeReply(raw: string, venues: Venue[]): BotReply {
   // 22. Human / contact
   if (has(low, "human", "agent", "person", "call me", "phone", "number", "contact", "talk", "callback", "whatsapp", "email", "address", "office")) {
     return {
-      text: "Of course — our concierge takes every enquiry personally: +91 94624 60555 (Mon–Sat, 10am–7pm IST). We reply within one business day, usually much faster. Or leave your details and we will call you.",
+      text: "Of course — our team takes every enquiry personally: +91 94624 60555 (Mon–Sat, 10am–7pm IST). We reply within one business day, usually much faster. Or leave your details and we will call you.",
       links: CONTACT_LINKS,
       suggest: ["Request callback", "How do I book?"],
     };
@@ -347,7 +347,7 @@ export function conciergeReply(raw: string, venues: Venue[]): BotReply {
   }
   if (has(low, "bye", "see you", "good night", "alright")) {
     return {
-      text: "Goodbye for now — I will be right here when the planning begins. The concierge line +91 94624 60555 is open Mon–Sat, 10am–7pm.",
+      text: "Goodbye for now — I will be right here when the planning begins. Our expert line +91 94624 60555 is open Mon–Sat, 10am–7pm.",
       suggest: ["See all venues"],
     };
   }
