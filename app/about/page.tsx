@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import CTASection from "@/components/CTASection";
-import Reveal from "@/components/Reveal";
-import SectionHeading from "@/components/SectionHeading";
-import VideoCard from "@/components/VideoCard";
+import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import CTASection from "@/components/home/CTASection";
+import Reveal from "@/components/ui/Reveal";
+import SectionHeading from "@/components/home/SectionHeading";
+import VideoCard from "@/components/home/VideoCard";
 import { SITE } from "@/lib/site";
 import { buildMetadata } from "@/lib/seo";
 

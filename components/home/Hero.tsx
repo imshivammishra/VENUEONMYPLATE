@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import SearchBar from "./SearchBar";
+import SearchBar from "../forms/SearchBar";
 import { cn } from "@/lib/utils";
 
 const HERO_VIDEO = "/videos/hero-bg.mp4";

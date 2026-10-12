@@ -54,7 +54,6 @@ export default function SocialProof() {
   // Couple booking popups — first after 25s, then every 2 minutes
   useEffect(() => {
     let hide: ReturnType<typeof setTimeout> | undefined;
-    let first: ReturnType<typeof setTimeout> | undefined;
     let every: ReturnType<typeof setInterval> | undefined;
     const show = () => {
       setBooking(BOOKINGS[idx.current % BOOKINGS.length]);
@@ -67,7 +66,7 @@ export default function SocialProof() {
       show();
       every = setInterval(show, 120000);
     };
-    first = setTimeout(start, 25000);
+    const first = setTimeout(start, 25000);
     const onVis = () => {
       if (document.hidden) {
         if (every) clearInterval(every);

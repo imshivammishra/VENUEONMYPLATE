@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import Reveal from "@/components/Reveal";
+import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import Reveal from "@/components/ui/Reveal";
 import { SITE } from "@/lib/site";
 import { buildMetadata } from "@/lib/seo";
 

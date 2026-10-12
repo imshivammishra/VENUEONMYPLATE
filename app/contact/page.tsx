@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import EnquiryForm from "@/components/EnquiryForm";
-import FAQ from "@/components/FAQ";
-import Reveal from "@/components/Reveal";
+import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import EnquiryForm from "@/components/forms/EnquiryForm";
+import FAQ from "@/components/forms/FAQ";
+import Reveal from "@/components/ui/Reveal";
 import { generalFaqs } from "@/lib/data";
 import { SITE } from "@/lib/site";
 import { buildMetadata, faqJsonLd } from "@/lib/seo";

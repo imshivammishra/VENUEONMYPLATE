@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { formatGuests } from "@/lib/utils";
-import Reveal from "./Reveal";
+import Reveal from "../ui/Reveal";
 
 export default function VenueCard({ venue, index = 0 }: { venue: import("@/types").Venue; index?: number }) {
   return (

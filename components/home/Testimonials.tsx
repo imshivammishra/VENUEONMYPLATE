@@ -1,6 +1,6 @@
 import Link from "next/link";
 import SectionHeading from "./SectionHeading";
-import Reveal from "./Reveal";
+import Reveal from "../ui/Reveal";
 
 /**
  * The concierge promise — three steps on deep midnight-crimson.

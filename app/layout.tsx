@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import ConciergeChat from "@/components/ConciergeChat";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
-import SocialProof from "@/components/SocialProof";
+import ConciergeChat from "@/components/chat/ConciergeChat";
+import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
+import SocialProof from "@/components/chat/SocialProof";
 import { getVenues } from "@/lib/api";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import "./globals.css";

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import Reveal from "./Reveal";
+import Reveal from "../ui/Reveal";
 
 export default function SectionHeading({
   eyebrow,

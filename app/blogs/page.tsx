@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Breadcrumbs from "@/components/Breadcrumbs";
+import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import BlogCard from "@/components/BlogCard";
-import Reveal from "@/components/Reveal";
-import SectionHeading from "@/components/SectionHeading";
+import Reveal from "@/components/ui/Reveal";
+import SectionHeading from "@/components/home/SectionHeading";
 import { getBlogs } from "@/lib/api";
 import { buildMetadata } from "@/lib/seo";
 

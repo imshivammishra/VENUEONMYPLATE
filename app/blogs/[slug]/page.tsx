@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Breadcrumbs from "@/components/Breadcrumbs";
+import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import BlogCard from "@/components/BlogCard";
-import CTASection from "@/components/CTASection";
-import Reveal from "@/components/Reveal";
+import CTASection from "@/components/home/CTASection";
+import Reveal from "@/components/ui/Reveal";
 import { getBlogBySlug, getBlogs } from "@/lib/api";
 import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 

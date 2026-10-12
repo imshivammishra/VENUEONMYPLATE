@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import CTASection from "@/components/CTASection";
-import Reveal from "@/components/Reveal";
-import SectionHeading from "@/components/SectionHeading";
-import VenueFilters from "@/components/VenueFilters";
-import VenueGrid from "@/components/VenueGrid";
+import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import CTASection from "@/components/home/CTASection";
+import Reveal from "@/components/ui/Reveal";
+import SectionHeading from "@/components/home/SectionHeading";
+import VenueFilters from "@/components/venues/VenueFilters";
+import VenueGrid from "@/components/venues/VenueGrid";
 import { getVenues } from "@/lib/api";
 import { buildMetadata } from "@/lib/seo";
 

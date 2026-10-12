@@ -1,6 +1,6 @@
 import type { Venue } from "@/types";
 import VenueCard from "./VenueCard";
-import Reveal from "./Reveal";
+import Reveal from "../ui/Reveal";
 
 export default function VenueGrid({ venues }: { venues: Venue[] }) {
   if (venues.length === 0) {

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { Venue } from "@/types";
-import VenueCard from "./VenueCard";
+import VenueCard from "../venues/VenueCard";
 import { cn } from "@/lib/utils";
 
 const TABS: Array<{ key: string; label: string; match: string[] }> = [

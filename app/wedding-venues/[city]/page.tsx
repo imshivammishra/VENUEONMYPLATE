@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import CTASection from "@/components/CTASection";
-import FAQ from "@/components/FAQ";
-import Reveal from "@/components/Reveal";
-import SectionHeading from "@/components/SectionHeading";
-import VenueGrid from "@/components/VenueGrid";
+import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import CTASection from "@/components/home/CTASection";
+import FAQ from "@/components/forms/FAQ";
+import Reveal from "@/components/ui/Reveal";
+import SectionHeading from "@/components/home/SectionHeading";
+import VenueGrid from "@/components/venues/VenueGrid";
 import { getCity, getVenues } from "@/lib/api";
 import { breadcrumbJsonLd, buildMetadata, faqJsonLd } from "@/lib/seo";
 

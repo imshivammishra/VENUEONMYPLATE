@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import Reveal from "@/components/Reveal";
+import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import Reveal from "@/components/ui/Reveal";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
