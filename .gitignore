@@ -1,7 +1,26 @@
+# dependencies
 node_modules/
+
+# next.js
 .next/
 out/
 dist/
+
+# vercel
+.vercel/
+
+# env (never commit secrets)
+.env
+.env*.local
+.env*.production
+
+# raw brand assets + client previews (not part of the site)
+LOGO/
+WEBSITE-PREVIEW/
+CLIENT-PREVIEW/
+
+# misc
 *.log
 .DS_Store
-.env*.local
+*.tsbuildinfo
+coverage/

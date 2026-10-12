@@ -1,0 +1,5 @@
+# Keep Vercel deploys lean — raw uploads and previews never ship.
+LOGO/
+WEBSITE-PREVIEW/
+CLIENT-PREVIEW/
+*.tsbuildinfo
