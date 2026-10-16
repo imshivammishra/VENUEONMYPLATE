@@ -46,7 +46,7 @@ export default function Footer() {
       <div
         aria-hidden="true"
         className="h-[3px]"
-        style={{ backgroundImage: "linear-gradient(90deg, #5a130e, #7a1e16 30%, #c19a3f 65%, #8f6c22)" }}
+        style={{ backgroundImage: "linear-gradient(90deg, #5c0a20, #7f0f2e 30%, #d4a437 65%, #a67c1a)" }}
       />
       <div className="mx-auto max-w-[1024px] px-5 pt-10 pb-6 md:px-6">
         <div className="flex flex-col items-center pb-10 text-center">
@@ -80,9 +80,9 @@ export default function Footer() {
         </div>
         <div className="mt-8 border-t border-black/10 pt-5 text-[12px] text-[#6e6e73]">
           <p className="flex flex-wrap items-center gap-x-5 gap-y-1">
-            <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rotate-45 bg-[#7a1e16]" /> Private shortlists</span>
-            <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rotate-45 bg-[#7a1e16]" /> Verified venues</span>
-            <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rotate-45 bg-[#7a1e16]" /> Expert support</span>
+            <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rotate-45 bg-[#7f0f2e]" /> Private shortlists</span>
+            <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rotate-45 bg-[#7f0f2e]" /> Verified venues</span>
+            <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rotate-45 bg-[#7f0f2e]" /> Expert support</span>
           </p>
           <p className="mt-3">Copyright © {new Date().getFullYear()} Venue On My Plate. All rights reserved.</p>
           <div className="mt-2 flex gap-4">

@@ -90,6 +90,28 @@ export default function ConciergeChat({ venues }: { venues: Venue[] }) {
           } else if (lead === "awaitCity") {
             const done = { ...leadData, city: trimmed };
             setLead("idle");
+            // Forward lead to VOMP Workspace live server (realtime inbox)
+            try {
+              const LIVE =
+                process.env.NEXT_PUBLIC_VOMP_API?.replace(/\/$/, "") ||
+                "http://localhost:8081";
+              fetch(`${LIVE}/api/enquiries`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  name: done.name,
+                  phone: done.phone,
+                  city: done.city,
+                  eventType: "Wedding",
+                  eventDate: "",
+                  guestCount: "",
+                  message: `Hi, please call me about venues in ${done.city}. (via concierge chat)`,
+                  source: "concierge-chat",
+                }),
+              }).catch(() => {});
+            } catch {
+              /* workspace offline */
+            }
             const q = new URLSearchParams({
               name: done.name,
               phone: done.phone,
@@ -169,7 +191,7 @@ export default function ConciergeChat({ venues }: { venues: Venue[] }) {
             setNudge(false);
             setOpen(true);
           }}
-          className="chat-pop fixed right-4 bottom-24 z-50 max-w-[240px] rounded-2xl rounded-br-md bg-white p-3 text-left shadow-[0_20px_50px_-16px_rgba(90,19,14,0.4)] ring-1 ring-[#c19a3f]/50 md:right-6 md:bottom-24"
+          className="chat-pop fixed right-4 bottom-24 z-50 max-w-[240px] rounded-2xl rounded-br-md bg-white p-3 text-left shadow-[0_20px_50px_-16px_rgba(92,10,32,0.4)] ring-1 ring-[#d4a437]/50 md:right-6 md:bottom-24"
         >
           <span className="text-[13px] font-semibold text-[#1d1d1f]">Looking for a venue?</span>
           <span className="mt-0.5 block text-[12px] leading-snug text-[#424245]">
@@ -190,8 +212,8 @@ export default function ConciergeChat({ venues }: { venues: Venue[] }) {
           className="group fixed right-4 bottom-6 z-50 md:right-6"
         >
           <span className="relative grid h-[76px] w-[76px] place-items-center">
-            <span className="relative grid h-[76px] w-[76px] place-items-center overflow-hidden rounded-full bg-white shadow-[0_18px_44px_-12px_rgba(143,108,34,0.5)] ring-1 ring-[#c19a3f]/70">
-              <Image src="/images/logo-mark.png" alt="" width={64} height={64} className="h-14 w-14 object-contain" />
+            <span className="relative grid h-[76px] w-[76px] place-items-center overflow-hidden rounded-full bg-white shadow-[0_18px_44px_-12px_rgba(166,124,26,0.5)] ring-1 ring-[#d4a437]/70">
+              <Image src="/images/official-logo-mark.png" alt="" width={64} height={64} className="h-14 w-14 object-contain" />
             </span>
           </span>
           <span className="mt-1 block rounded-full bg-black/70 px-2.5 py-1 text-center text-[10px] font-semibold tracking-wider text-white uppercase opacity-0 backdrop-blur transition group-hover:opacity-100">
@@ -204,13 +226,13 @@ export default function ConciergeChat({ venues }: { venues: Venue[] }) {
       {open && (
         <section
           aria-label="Venue expert chat"
-          className="chat-pop fixed inset-x-4 bottom-24 z-50 flex max-h-[72vh] min-h-[480px] flex-col overflow-hidden rounded-[22px] bg-white shadow-[0_36px_90px_-24px_rgba(90,19,14,0.4)] ring-1 ring-[#c19a3f]/40 md:inset-x-auto md:right-6 md:bottom-6 md:w-[392px]"
+          className="chat-pop fixed inset-x-4 bottom-24 z-50 flex max-h-[72vh] min-h-[480px] flex-col overflow-hidden rounded-[22px] bg-white shadow-[0_36px_90px_-24px_rgba(92,10,32,0.4)] ring-1 ring-[#d4a437]/40 md:inset-x-auto md:right-6 md:bottom-6 md:w-[392px]"
         >
           {/* Header */}
-          <div className="px-4 py-3.5 text-white" style={{ backgroundImage: "linear-gradient(135deg, #5a130e, #7a1e16)" }}>
+          <div className="px-4 py-3.5 text-white" style={{ backgroundImage: "linear-gradient(135deg, #5c0a20, #7f0f2e)" }}>
             <div className="relative flex items-center gap-3">
-              <span className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-full bg-white ring-1 ring-[#c19a3f]/50">
-                <Image src="/images/logo-mark.png" alt="" width={44} height={44} className="h-10 w-10 object-contain" />
+              <span className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-full bg-white ring-1 ring-[#d4a437]/50">
+                <Image src="/images/official-logo-mark.png" alt="" width={44} height={44} className="h-10 w-10 object-contain" />
               </span>
               <div className="min-w-0 flex-1">
                 <p className="text-[15px] font-semibold leading-tight">Plate · Venue Expert</p>
@@ -241,7 +263,7 @@ export default function ConciergeChat({ venues }: { venues: Venue[] }) {
             {msgs.map((m) =>
               m.from === "user" ? (
                 <div key={m.id} className="flex justify-end">
-                  <p className="max-w-[85%] rounded-2xl rounded-br-md bg-[#7a1e16] px-4 py-2.5 text-[14px] leading-relaxed text-white">
+                  <p className="max-w-[85%] rounded-2xl rounded-br-md bg-[#7f0f2e] px-4 py-2.5 text-[14px] leading-relaxed text-white">
                     {m.text}
                   </p>
                 </div>

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BadgePercent, Building2, CalendarCheck, Camera, Flower2, PhoneCall, Sparkles, Star, UtensilsCrossed, Wallet } from "lucide-react";
+import { BadgePercent, Building2, Castle, Landmark, Palmtree, PhoneCall, Sparkles, Star, TentTree, Users } from "lucide-react";
 import BlogCard from "@/components/venues/BlogCard";
 import CTASection from "@/components/home/CTASection";
 import CityCard from "@/components/venues/CityCard";
@@ -82,9 +82,9 @@ export default async function HomePage() {
       <div aria-hidden="true" className="marquee marquee-band overflow-hidden py-2.5">
         <div className="marquee-track flex w-max items-center gap-10 whitespace-nowrap">
           {[...TICKER, ...TICKER].map((t, i) => (
-            <span key={i} className="flex items-center gap-10 text-[12px] font-semibold tracking-[0.3em] text-[#f7ebce] uppercase">
+            <span key={i} className="flex items-center gap-10 text-[12px] font-semibold tracking-[0.3em] text-[#fdf3d7] uppercase">
               {t}
-              <span className="h-[6px] w-[6px] rotate-45 rounded-[1px] bg-[#f7ebce]/70" />
+              <span className="h-[6px] w-[6px] rotate-45 rounded-[1px] bg-[#fdf3d7]/70" />
             </span>
           ))}
         </div>
@@ -194,31 +194,31 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Services — end-to-end celebration support */}
-      <section aria-label="Celebration services" className="band-sage border-t border-[#e7ce9c]">
+      {/* Venue categories — we provide venues only */}
+      <section aria-label="Venue categories" className="band-sage border-t border-[#eed9a3]">
         <div className="mx-auto max-w-[1024px] px-5 py-14 md:px-6 md:py-20">
           <SectionHeading
-            eyebrow="End-to-end services"
-            title="Your entire wedding, handled"
-            copy="One team for venues, decor, catering, photography and planning — booked together, managed together."
+            eyebrow="Venue categories"
+            title="Venues only — picked for your occasion"
+            copy="We provide the venue itself. Choose a category to browse palaces, resorts, banquets and destination venues."
           />
           <Reveal delay={120}>
             <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {[
-                { icon: Building2, t: "Venue booking", d: "Palaces, resorts, lawns and ballrooms matched to date, guests and budget." },
-                { icon: Flower2, t: "Decor & mandaps", d: "Floral stages, entries and tablescapes with trusted decor panels." },
-                { icon: Camera, t: "Photography", d: "Candid and traditional teams briefed on your venues and light." },
-                { icon: UtensilsCrossed, t: "Catering", d: "Menus, tastings and live counters planned per function." },
-                { icon: CalendarCheck, t: "Planning support", d: "Timelines, vendor sequencing and on-day coordination." },
-                { icon: Wallet, t: "Budget optimisation", d: "Benchmarked quotes and negotiated inclusions, in writing." },
-              ].map(({ icon: Icon, t, d }) => (
-                <Link key={t} href="/contact" className="group rounded-[18px] bg-[#f5f5f7] p-7 transition duration-300 hover:bg-[#e8e8ed]">
-                  <span className="grid h-11 w-11 place-items-center rounded-full bg-[#1d1d1f] text-white">
+                { icon: Castle, t: "Palaces & heritage", d: "Royal palaces and heritage properties for weddings and receptions.", href: "/venues?event=Wedding" },
+                { icon: Palmtree, t: "Resorts & lawns", d: "Green resorts, farmhouses and open lawns for haldi, sangeet and pheras.", href: "/venues" },
+                { icon: Landmark, t: "Banquets & ballrooms", d: "Premium indoor halls for receptions, anniversaries and large guest lists.", href: "/venues" },
+                { icon: TentTree, t: "Beach & destination", d: "Goa, Udaipur, Jaipur and beyond — venues worth travelling for.", href: "/cities" },
+                { icon: Building2, t: "Corporate venues", d: "Conferences, offsites and annual days with rooms, AV and banquets.", href: "/venues?event=Corporate event" },
+                { icon: Users, t: "Private party venues", d: "Birthdays, anniversaries and intimate gatherings at verified venues.", href: "/venues?event=Birthday / Anniversary" },
+              ].map(({ icon: Icon, t, d, href }) => (
+                <Link key={t} href={href} className="group rounded-[18px] bg-[#f5f5f7] p-7 transition duration-300 hover:bg-[#e8e8ed]">
+                  <span className="grid h-11 w-11 place-items-center rounded-full bg-[#5c0a20] text-[#f6de9a]">
                     <Icon size={20} />
                   </span>
                   <p className="mt-4 text-[17px] font-bold tracking-tight text-[#1d1d1f]">{t}</p>
                   <p className="mt-1.5 text-[14px] leading-relaxed text-[#424245]">{d}</p>
-                  <span className="mt-3 inline-block text-[14px] text-[#1d1d1f] underline decoration-black/30 underline-offset-4 group-hover:decoration-black">Enquire &rsaquo;</span>
+                  <span className="mt-3 inline-block text-[14px] text-[#1d1d1f] underline decoration-black/30 underline-offset-4 group-hover:decoration-black">Browse venues &rsaquo;</span>
                 </Link>
               ))}
             </div>
@@ -227,7 +227,7 @@ export default async function HomePage() {
       </section>
 
       {/* Why — 3 Samsung feature columns */}
-      <section aria-label="Why Venue On My Plate" className="band-cream border-t border-[#e7ce9c]">
+      <section aria-label="Why Venue On My Plate" className="band-cream border-t border-[#eed9a3]">
         <div className="mx-auto max-w-[1440px] px-5 py-14 md:px-8 md:py-20">
           <SectionHeading
             eyebrow="Why we are better"
@@ -285,7 +285,7 @@ export default async function HomePage() {
       </section>
 
       {/* Gallery — white mats, champagne frames */}
-      <section aria-label="Events gallery" className="band-blush border-t border-[#e7ce9c]">
+      <section aria-label="Events gallery" className="band-blush border-t border-[#eed9a3]">
         <div className="mx-auto max-w-[1440px] px-5 py-14 md:px-8 md:py-20">
           <SectionHeading
             eyebrow="Events gallery"
@@ -310,7 +310,7 @@ export default async function HomePage() {
       </section>
 
       {/* Celebrations in motion */}
-      <section aria-label="Celebration films" className="band-cream border-t border-[#e7ce9c]">
+      <section aria-label="Celebration films" className="band-cream border-t border-[#eed9a3]">
         <div className="mx-auto max-w-[1024px] px-5 py-14 md:px-6 md:py-20">
           <SectionHeading
             eyebrow="Films"
@@ -368,7 +368,7 @@ export default async function HomePage() {
       </section>
 
       {/* Journal */}
-      <section aria-labelledby="journal-heading" className="band-blush border-t border-[#e7ce9c]">
+      <section aria-labelledby="journal-heading" className="band-blush border-t border-[#eed9a3]">
         <div className="mx-auto max-w-[1440px] px-5 py-14 md:px-8 md:py-20">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <SectionHeading align="left" eyebrow="Journal" title="Ideas worth stealing" />
@@ -424,9 +424,10 @@ export default async function HomePage() {
               Delhi NCR.
             </p>
             <p>
-              Beyond venue discovery, our planners assist with decor, catering menus, photography
-              teams and budget optimisation — so haldi mornings, sangeet evenings and the wedding
-              day itself run on one coordinated plan instead of five separate vendor threads.
+              We focus only on venues — not decor, catering, or photography. Our team helps you
+              compare venue flow, ceremony zones, guest movement, rooms and private quote options,
+              so haldi mornings, sangeet evenings and the wedding day itself start from the right
+              venue choice.
             </p>
             <p>
               Start by browsing <Link className="s-link" href="/venues">all venues</Link> or

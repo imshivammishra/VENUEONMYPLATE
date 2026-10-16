@@ -61,6 +61,19 @@ export async function getBlogBySlug(slug: string): Promise<BlogPost | null> {
 }
 
 export async function submitEnquiry(payload: Record<string, string>): Promise<{ ok: boolean }> {
+  // Always forward to VOMP Workspace live server so admin sees it in realtime.
+  // NEXT_PUBLIC_VOMP_API defaults to local workspace server; silent if offline.
+  const VOMP_LIVE =
+    process.env.NEXT_PUBLIC_VOMP_API?.replace(/\/$/, "") || "http://localhost:8081";
+  try {
+    fetch(`${VOMP_LIVE}/api/enquiries`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...payload, source: "website" }),
+    }).catch(() => {});
+  } catch {
+    /* offline workspace — ignore */
+  }
   if (!API_BASE) {
     // No backend configured yet — simulate success so UX can be reviewed.
     // Remove this fallback once the real backend exists.

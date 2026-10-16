@@ -14,7 +14,7 @@ export default function Loading() {
       role="status"
     >
       <Image
-        src="/images/logo-mark.png"
+        src="/images/official-logo-mark.png"
         alt=""
         width={120}
         height={90}

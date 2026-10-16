@@ -69,7 +69,7 @@ export default function Hero() {
         }}
       />
       <div className="relative mx-auto max-w-[1024px] px-5 pt-14 pb-10 text-center md:pt-20">
-        <p className="text-[13px] font-semibold tracking-[0.2em] text-[#8f6c22] uppercase">{slide.eyebrow}</p>
+        <p className="text-[13px] font-semibold tracking-[0.2em] text-[#a67c1a] uppercase">{slide.eyebrow}</p>
         <h1
           key={slide.title}
           className="font-display mx-auto mt-2 max-w-3xl text-[44px] leading-[1.02] font-semibold text-balance text-[#1d1d1f] md:text-[72px]"
@@ -108,7 +108,7 @@ export default function Hero() {
 
       {/* Video feature card */}
       <div className="relative mx-auto max-w-[1200px] px-4 pb-4 md:px-6">
-        <div className="relative overflow-hidden rounded-[28px] bg-black shadow-[0_40px_90px_-32px_rgba(143,108,34,0.5)] ring-1 ring-[#e7ce9c]">
+        <div className="relative overflow-hidden rounded-[28px] bg-black shadow-[0_40px_90px_-32px_rgba(166,124,26,0.5)] ring-1 ring-[#eed9a3]">
           <video
             ref={videoRef}
             className="aspect-[16/10] w-full object-cover md:aspect-[21/9]"

@@ -34,11 +34,17 @@ export const metadata: Metadata = {
     images: [{ url: "https://venueonmyplate.in/images/og-cover.svg", width: 1200, height: 630 }],
   },
   twitter: { card: "summary_large_image" },
-  icons: { icon: "/favicon.png" },
+  icons: {
+    icon: [
+      { url: "/favicon.png", sizes: "512x512", type: "image/png" },
+      { url: "/images/official-logo-256.png", sizes: "256x256", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+  },
 };
 
 export const viewport = {
-  themeColor: "#ffffff",
+  themeColor: "#5c0a20",
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {

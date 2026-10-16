@@ -21,7 +21,7 @@ export default function VideoCard({ src, caption }: { src: string; caption: stri
   }, []);
 
   return (
-    <figure className="group overflow-hidden rounded-[28px] bg-white shadow-[0_20px_50px_-24px_rgba(143,108,34,0.4)] ring-1 ring-[#e7ce9c] transition duration-300 hover:-translate-y-1 hover:shadow-[0_30px_60px_-24px_rgba(143,108,34,0.5)]">
+    <figure className="group overflow-hidden rounded-[28px] bg-white shadow-[0_20px_50px_-24px_rgba(166,124,26,0.4)] ring-1 ring-[#eed9a3] transition duration-300 hover:-translate-y-1 hover:shadow-[0_30px_60px_-24px_rgba(166,124,26,0.5)]">
       <div className="relative overflow-hidden bg-black/5">
         <video
           ref={ref}

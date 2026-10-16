@@ -31,24 +31,24 @@
 
 @theme {
   --color-ivory: #ffffff;
-  --color-cream: #ffffff;
-  --color-ink: #2e2624;
-  --color-soft: #57504b;
-  --color-mute: #8a7f78;
-  --color-line: #f0ddd6;
-  --color-gold: #7a1e16;
-  --color-golddeep: #5a130e;
-  --color-goldsoft: #f9ecea;
+  --color-cream: #fdf8ec;
+  --color-ink: #2b1218;
+  --color-soft: #5a4348;
+  --color-mute: #8a757a;
+  --color-line: #f3ddb0;
+  --color-gold: #7f0f2e;
+  --color-golddeep: #5c0a20;
+  --color-goldsoft: #fbeedd;
   --color-wine: #1d1d1f;
   --color-winedeep: #000000;
   --color-midnight: #1d1d1f;
   --color-steel: #424245;
-  --color-crimson: #7a1e16;
+  --color-crimson: #7f0f2e;
   --color-peach: #e8f1fc;
-  --color-brand: #7a1e16;
-  --color-champagne: #c19a3f;
-  --color-champagnedeep: #8f6c22;
-  --color-champagnesoft: #f7efda;
+  --color-brand: #7f0f2e;
+  --color-champagne: #d4a437;
+  --color-champagnedeep: #a67c1a;
+  --color-champagnesoft: #fdf3d7;
   --font-display: "Cormorant Garamond", "Didot", "Bodoni MT", Georgia, serif;
   --font-body: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --brand-gradient: linear-gradient(135deg, #1d1d1f, #43434c);
@@ -73,15 +73,15 @@ body {
   letter-spacing: 0.01em;
 }
 
-/* Brand helpers — Apple-minimal monochrome + blue */
+/* Brand helpers — official maroon + gold */
 .brand-gradient {
-  background-image: linear-gradient(135deg, #1d1d1f, #43434c);
+  background-image: linear-gradient(135deg, #5c0a20, #7f0f2e 55%, #a67c1a);
 }
 .brand-gradient-deep {
-  background-image: linear-gradient(180deg, #1d1d1f 0%, #000000 100%);
+  background-image: linear-gradient(180deg, #5c0a20 0%, #42061a 100%);
 }
 .brand-gradient-text {
-  background-image: linear-gradient(135deg, #1d1d1f, #43434c);
+  background-image: linear-gradient(135deg, #7f0f2e, #a67c1a);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -91,12 +91,12 @@ body {
 }
 
 ::selection {
-  background: #7a1e16;
+  background: #7f0f2e;
   color: #fff;
 }
 
 :focus-visible {
-  outline: 2px solid #7a1e16;
+  outline: 2px solid #7f0f2e;
   outline-offset: 3px;
 }
 
@@ -135,9 +135,9 @@ body {
   box-shadow: 0 16px 36px -16px rgba(0, 0, 0, 0.22);
 }
 
-/* Primary pill button — Apple blue */
+/* Primary pill button — official maroon */
 .s-btn-dark {
-  background: #7a1e16;
+  background: #7f0f2e;
   background-image: none;
   background-size: auto;
   color: #fff;
@@ -147,10 +147,10 @@ body {
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
 .s-btn-dark:hover {
-  background: #5a130e;
+  background: #5c0a20;
   background-position: initial;
   transform: translateY(-1px);
-  box-shadow: 0 12px 26px -12px rgba(122, 30, 22, 0.65);
+  box-shadow: 0 12px 26px -12px rgba(127, 15, 46, 0.65);
 }
 .s-btn-dark:active {
   transform: scale(0.97);
@@ -340,9 +340,9 @@ details[open] .faq-a {
   background: #ffffff;
 }
 
-/* Golden-brown marquee ticker — logo maroon */
+/* Golden marquee ticker — official maroon */
 .marquee-band {
-  background: linear-gradient(90deg, #3d0b08, #5a130e 40%, #5a130e 60%, #3d0b08);
+  background: linear-gradient(90deg, #42061a, #5c0a20 40%, #5c0a20 60%, #42061a);
 }
 
 /* Centered ornament — hairline, dot, hairline */

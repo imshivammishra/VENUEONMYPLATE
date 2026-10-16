@@ -43,7 +43,7 @@ export function organizationJsonLd() {
     "@type": "Organization",
     name: "Venue On My Plate",
     url: absoluteUrl("/"),
-    logo: absoluteUrl("/images/logo.svg"),
+    logo: absoluteUrl("/images/official-logo.png"),
     sameAs: [] as string[],
   };
 }

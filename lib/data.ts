@@ -278,7 +278,7 @@ export const generalFaqs: Faq[] = [
   {
     question: "Do you handle decor, catering or planning?",
     answer:
-      "Venues list their in-house and preferred partners for catering and decor. Where you need them, we introduce trusted planners — you always contract directly and transparently.",
+      "No — we provide venues only. Venues may have in-house catering or preferred decor partners, and we flag those options during shortlisting, but you contract any additional vendors directly.",
   },
   {
     question: "How early should we book our venue?",

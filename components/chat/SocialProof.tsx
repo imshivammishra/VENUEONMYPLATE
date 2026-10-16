@@ -122,10 +122,10 @@ export default function SocialProof() {
       {booking && (
         <div
           role="status"
-          className="chat-pop fixed bottom-6 left-4 z-50 flex max-w-[300px] items-start gap-3 rounded-2xl bg-white p-3.5 pr-4 shadow-[0_20px_50px_-16px_rgba(90,19,14,0.4)] ring-1 ring-[#c19a3f]/50 md:left-6"
+          className="chat-pop fixed bottom-6 left-4 z-50 flex max-w-[300px] items-start gap-3 rounded-2xl bg-white p-3.5 pr-4 shadow-[0_20px_50px_-16px_rgba(92,10,32,0.4)] ring-1 ring-[#d4a437]/50 md:left-6"
         >
-          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#7a1e16]/10">
-            <BadgeCheck size={19} className="text-[#7a1e16]" />
+          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#7f0f2e]/10">
+            <BadgeCheck size={19} className="text-[#7f0f2e]" />
           </span>
           <div className="min-w-0">
             <p className="text-[13px] leading-snug text-[#1d1d1f]">

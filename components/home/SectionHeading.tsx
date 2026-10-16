@@ -23,7 +23,7 @@ export default function SectionHeading({
         <p
           className={cn(
             "text-[15px] font-semibold",
-            dark ? "text-white/80" : "text-[#8f6c22]"
+            dark ? "text-white/80" : "text-[#a67c1a]"
           )}
         >
           {eyebrow}
@@ -42,7 +42,7 @@ export default function SectionHeading({
           </p>
         )}
         {align === "center" && !dark && (
-          <div aria-hidden="true" className="mx-auto mt-5 h-[2px] w-12 rounded-full" style={{ backgroundImage: "linear-gradient(90deg, #7a1e16, #c19a3f)" }} />
+          <div aria-hidden="true" className="mx-auto mt-5 h-[2px] w-12 rounded-full" style={{ backgroundImage: "linear-gradient(90deg, #7f0f2e, #d4a437)" }} />
         )}
       </div>
     </Reveal>
