@@ -1,68 +1,106 @@
-# Venue On My Plate
+# Venue On My Plate — Public Website
 
-Premium venue-discovery platform for weddings and celebrations across India.
-Next.js 15 (App Router) + React 19 + Tailwind CSS v4 + TypeScript.
+The customer-facing venue discovery site for **Venue On My Plate**. Built with
+Next.js 15 (App Router), React 19, Tailwind CSS v4 and TypeScript, and designed
+to run on a Contabo VPS behind Nginx + PM2.
 
-## Quick start
+## Stack
+
+| Layer | Choice |
+| --- | --- |
+| Framework | Next.js 15 / React 19 |
+| Styling | Tailwind CSS v4, self-hosted Cormorant + Inter |
+| Data | Venue On My Plate API (`/api/v1/public/*`) with safe fallbacks |
+| Hosting | Contabo VPS, Nginx reverse proxy, PM2, Let's Encrypt |
+| CI | GitHub Actions |
+
+## Local development
+
+Requirements: **Node.js 22.5+** and npm 10+.
 
 ```bash
-npm install
-npm run dev      # http://localhost:3000
+npm ci
+cp .env.example .env.local
+npm run dev
 ```
 
-| Command           | What it does                              |
-| ----------------- | ----------------------------------------- |
-| `npm run dev`     | Local dev server with hot reload          |
-| `npm run build`   | Production build (also runs ESLint + types) |
-| `npm run start`   | Serve the production build                |
-| `npm run typecheck` | `tsc --noEmit`                          |
-| `npm run format`  | Prettier write                            |
+The site runs at <http://localhost:3000>. Run the API from the separate
+`Venue-Workspace` repository at <http://localhost:8081>. For local development,
+set these values in `.env.local`:
 
-## Folder structure
-
-```
-app/                  # Routes (each folder = a page)
-  page.tsx            # Homepage
-  venues/             # Directory + venue detail [slug]
-  cities/[city]/      # Destination pages
-  wedding-venues/[city]/
-  blogs/ (+ [slug])   # Journal index + articles
-  about/ contact/ partner/ privacy/ terms/
-  layout.tsx          # Fonts, SEO, header/footer/chat shells
-  globals.css         # Theme tokens, buttons, motion system
-components/
-  layout/             # Header, Footer, Logo, Breadcrumbs
-  home/               # Hero, HomeTabs, CinematicBand, VideoCard, CTASection, SectionHeading
-  venues/             # VenueCard, VenueGrid, VenueFilters, CityCard, FloatingEnquire
-  forms/              # EnquiryForm, SearchBar, FAQ
-  chat/               # ConciergeChat (venue concierge bot), SocialProof (toasts)
-  ui/                 # Reveal (scroll animations)
-lib/
-  api.ts              # Data layer (local catalogue today, backend-ready)
-  data.ts             # Venues, cities, blogs, FAQs
-  concierge.ts        # Chatbot brain (intents + answers)
-  seo.ts / site.ts / utils.ts / validations.ts
-public/
-  images/             # Logo, marks, favicon, local photography
-  videos/             # Compressed hero video
-  fonts/              # Self-hosted Cormorant Garamond
+```env
+NEXT_PUBLIC_API_URL=http://localhost:8081
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
 
-Brand assets: `LOGO/` (raw uploads — excluded from deploys).
-Client previews: `WEBSITE-PREVIEW/` (excluded from deploys).
+### Scripts
 
-## Deploying on Vercel
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Development server with hot reload |
+| `npm run build` | Production build |
+| `npm run start` | Start the production build |
+| `npm run lint` | ESLint |
+| `npm run typecheck` | Strict TypeScript check |
+| `npm run format:check` | Prettier verification |
+| `npm run format` | Format the codebase |
 
-1. Push `main` to GitHub (this repo already tracks `origin/main`).
-2. Import the repo in Vercel — framework preset **Next.js**, defaults work.
-3. No env vars required. Optional: `NEXT_PUBLIC_API_URL` to connect the
-   backend (`/api/v1/public/*`); without it the site runs on the local catalogue.
-4. Every push to `main` redeploys. `npm run build` must stay green —
-   it runs ESLint + `tsc`, and Vercel fails the deploy on any error.
+## Production folder structure
 
-## Notes
+```text
+VENUEONMYPLATE/
+├── src/
+│   ├── app/                  # Routes, layouts, metadata, sitemap, robots
+│   ├── components/
+│   │   ├── chat/             # Concierge chat and social proof
+│   │   ├── forms/            # Enquiry, search and FAQ forms
+│   │   ├── home/             # Homepage sections
+│   │   ├── layout/           # Header, footer and brand lockup
+│   │   ├── ui/               # Small reusable primitives
+│   │   └── venues/           # Venue, city and editorial cards
+│   ├── lib/                  # API client, content, SEO and helpers
+│   └── types/                # Shared domain types
+├── public/                   # Images, fonts, video and static files
+├── scripts/                  # Local asset-generation utilities
+├── .github/workflows/        # CI
+├── next.config.ts
+└── package.json
+```
 
-- Remote images: Unsplash + Pexels (+ local `/public`). New hosts go in
-  `images.remotePatterns` in `next.config.ts`.
-- Fonts are self-hosted (`public/fonts`) + Inter via `next/font`.
-- Chatbot + popups are rule-based and client-side; no backend needed.
+## Environment
+
+```env
+# Browser requests use same-origin /api; server reads use the private API.
+NEXT_PUBLIC_API_URL=/
+API_INTERNAL_URL=http://127.0.0.1:8081
+NEXT_PUBLIC_SITE_URL=https://venueonmyplate.in
+```
+
+For local development use `API_INTERNAL_URL=http://localhost:8081` and
+`NEXT_PUBLIC_API_URL=http://localhost:8081`, or keep `/` and run the API behind
+the same proxy. Environment files are never committed.
+
+## Content and caching
+
+- Homepage copy, sections, reviews and settings come from the CMS API.
+- Public content revalidates every 60 seconds (`next: { revalidate: 60 }`).
+- Hardcoded fallbacks keep the site renderable if the API is briefly unavailable.
+- Reviews remain hidden until real reviews are published.
+- Uploaded media is served from `/uploads/library/<file>` on the same origin.
+
+## Deployment
+
+This repository is deployed with `Venue-Workspace`:
+
+1. Clone both repositories on the VPS.
+2. Follow [`Venue-Workspace/deploy/README.md`](../Venue-Workspace/deploy/README.md).
+3. The website listens on `127.0.0.1:3000`; Nginx terminates TLS for
+   `venueonmyplate.in`.
+4. `/api/*` and `/uploads/*` are proxied to the API on `127.0.0.1:8081`.
+
+No Vercel dependency. The production deployment is Nginx + PM2 on Contabo.
+
+## Health check
+
+`GET /healthz` returns a small JSON payload for uptime monitoring. It is not
+cached and does not expose environment values or database details.
