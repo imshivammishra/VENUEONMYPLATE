@@ -1,10 +1,9 @@
 import type { MetadataRoute } from "next";
 import { getBlogs, getVenues } from "@/lib/api";
 import { cities } from "@/lib/data";
-import { absoluteUrl } from "@/lib/utils";
+import { absoluteUrl, SITE_URL as base } from "@/lib/utils";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const base = "https://venueonmyplate.in";
   const [venues, blogs] = await Promise.all([getVenues(), getBlogs()]);
 
   return [

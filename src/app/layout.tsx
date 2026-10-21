@@ -6,6 +6,7 @@ import Header from "@/components/layout/Header";
 import WelcomeNotice from "@/components/chat/WelcomeNotice";
 import { getVenues } from "@/lib/api";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
+import { SITE_URL } from "@/lib/utils";
 import "./globals.css";
 
 const body = localFont({
@@ -17,23 +18,23 @@ const body = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://venueonmyplate.in"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Venue On My Plate — Find a venue worthy of your occasion",
     template: "%s | Venue On My Plate",
   },
   description:
     "Discover exceptional wedding and celebration venues across India. Curated palaces, resorts, lawns and ballrooms — plus a personal shortlist on request.",
-  alternates: { canonical: "https://venueonmyplate.in/" },
+  alternates: { canonical: `${SITE_URL}/` },
   openGraph: {
     type: "website",
     siteName: "Venue On My Plate",
     locale: "en_IN",
-    url: "https://venueonmyplate.in/",
+    url: `${SITE_URL}/`,
     title: "Venue On My Plate — Find a venue worthy of your occasion",
     description:
       "Discover exceptional wedding and celebration venues across India. Curated palaces, resorts, lawns and ballrooms.",
-    images: [{ url: "https://venueonmyplate.in/images/og-cover.svg", width: 1200, height: 630 }],
+    images: [{ url: `${SITE_URL}/images/og-cover.svg`, width: 1200, height: 630 }],
   },
   twitter: { card: "summary_large_image" },
   icons: {

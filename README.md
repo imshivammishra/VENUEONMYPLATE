@@ -29,9 +29,14 @@ The site runs at <http://localhost:3000>. Run the API from the separate
 set these values in `.env.local`:
 
 ```env
-NEXT_PUBLIC_API_URL=http://localhost:8081
+NEXT_PUBLIC_API_URL=/
+API_INTERNAL_URL=http://localhost:8081
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
+
+Browser requests stay on the website origin (`/api`); Next.js proxies them to
+the private API during local development, and Nginx does the same in
+production.
 
 ### Scripts
 
@@ -76,9 +81,10 @@ API_INTERNAL_URL=http://127.0.0.1:8081
 NEXT_PUBLIC_SITE_URL=https://venueonmyplate.in
 ```
 
-For local development use `API_INTERNAL_URL=http://localhost:8081` and
-`NEXT_PUBLIC_API_URL=http://localhost:8081`, or keep `/` and run the API behind
-the same proxy. Environment files are never committed.
+For local development use `API_INTERNAL_URL=http://localhost:8081` and keep
+`NEXT_PUBLIC_API_URL=/`. Next.js proxies browser API calls to the private API,
+so the site works on `localhost`, a LAN address or a preview host. Environment
+files are never committed.
 
 ## Content and caching
 
@@ -95,8 +101,9 @@ This repository is deployed with `Venue-Workspace`:
 1. Clone both repositories on the VPS.
 2. Follow [`Venue-Workspace/deploy/README.md`](../Venue-Workspace/deploy/README.md).
 3. The website listens on `127.0.0.1:3000`; Nginx terminates TLS for
-   `venueonmyplate.in`.
+   `dev.venueonmyplate.com` (staging) or `venueonmyplate.in` (production).
 4. `/api/*` and `/uploads/*` are proxied to the API on `127.0.0.1:8081`.
+   The staging API host is `dev.api.venueonmyplate.com`.
 
 No Vercel dependency. The production deployment is Nginx + PM2 on Contabo.
 

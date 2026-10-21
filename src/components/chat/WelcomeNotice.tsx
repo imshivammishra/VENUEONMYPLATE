@@ -35,7 +35,7 @@ export default function WelcomeNotice() {
   return (
     <div
       role="status"
-      className="chat-pop fixed top-28 left-1/2 z-50 w-[calc(100%-2rem)] max-w-md -translate-x-1/2 rounded-2xl bg-[#1d1d1f]/95 px-5 py-4 text-center text-white shadow-[0_24px_60px_-16px_rgba(0,0,0,0.6)] backdrop-blur md:top-32"
+      className="chat-pop fixed bottom-24 left-1/2 z-50 w-[calc(100%-2rem)] max-w-md -translate-x-1/2 rounded-2xl bg-[#1d1d1f]/95 px-5 py-4 text-center text-white shadow-[0_24px_60px_-16px_rgba(0,0,0,0.6)] backdrop-blur"
     >
       <button
         type="button"

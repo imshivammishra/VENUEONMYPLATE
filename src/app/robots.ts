@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL as base } from "@/lib/utils";
 
 export default function robots(): MetadataRoute.Robots {
-  const base = "https://venueonmyplate.in";
   return {
     rules: [{ userAgent: "*", allow: "/", disallow: ["/api/"] }],
     sitemap: `${base}/sitemap.xml`,

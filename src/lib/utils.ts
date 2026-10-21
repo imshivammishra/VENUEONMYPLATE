@@ -18,8 +18,9 @@ export function slugify(input: string): string {
     .replace(/(^-|-$)/g, "");
 }
 
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://venueonmyplate.in";
+
 export function absoluteUrl(path: string): string {
-  const base =
-    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://venueonmyplate.in";
-  return `${base}${path.startsWith("/") ? path : `/${path}`}`;
+  return `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
 }

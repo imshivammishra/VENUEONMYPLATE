@@ -47,7 +47,12 @@ const nextConfig: NextConfig = {
     ],
   },
   async rewrites() {
-    return [{ source: "/uploads/:path*", destination: `${apiInternal}/uploads/:path*` }];
+    return [
+      // Keep browser traffic same-origin in local development too. In
+      // production Nginx answers /api and /uploads before Next.js.
+      { source: "/api/:path*", destination: `${apiInternal}/api/:path*` },
+      { source: "/uploads/:path*", destination: `${apiInternal}/uploads/:path*` },
+    ];
   },
   async headers() {
     return [
