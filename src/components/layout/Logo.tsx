@@ -6,11 +6,13 @@ export default function Logo({
   tone = "dark",
   compact = false,
   full = false,
+  imageOnly = false,
   align = "start",
 }: {
   tone?: "dark" | "light";
   compact?: boolean;
   full?: boolean;
+  imageOnly?: boolean;
   align?: "start" | "center";
 }) {
   const src = full ? "/images/brand-logo.png" : "/images/brand-logo-256.png";
@@ -52,17 +54,19 @@ export default function Logo({
             unoptimized
             className={cn(
               "relative shrink-0 rounded-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.025]",
-              full
-                ? "h-[88px] w-[88px] md:h-[100px] md:w-[100px]"
-                : compact
-                  ? "h-10 w-10"
-                  : "h-[46px] w-[46px] md:h-[56px] md:w-[56px]"
+              imageOnly
+                ? "h-[60px] w-[60px] md:h-[74px] md:w-[74px]"
+                : full
+                  ? "h-[88px] w-[88px] md:h-[100px] md:w-[100px]"
+                  : compact
+                    ? "h-10 w-10"
+                    : "h-[46px] w-[46px] md:h-[56px] md:w-[56px]"
             )}
           />
         </span>
       </span>
 
-      {!compact && (
+      {!imageOnly && !compact && (
         <span
           className={cn(
             "flex flex-col items-center",

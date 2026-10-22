@@ -224,7 +224,7 @@ export default function Header() {
           className="absolute inset-x-0 top-0 h-px bg-[#f0d790]/55"
         />
 
-        <div className="relative mx-auto grid h-[112px] max-w-[1440px] grid-cols-[1fr_auto_1fr] items-center gap-2 px-4 md:h-[128px] md:px-6 xl:px-8">
+        <div className="relative mx-auto grid h-[84px] max-w-[1440px] grid-cols-[1fr_auto_1fr] items-center gap-2 px-4 md:h-[100px] md:px-6 xl:px-8">
           <div className="flex min-w-0 items-center justify-start gap-1">
             <button
               type="button"
@@ -238,7 +238,7 @@ export default function Header() {
           </div>
 
           <div className="relative flex items-center justify-center">
-            <Logo tone="light" align="center" />
+            <Logo tone="light" align="center" imageOnly />
           </div>
 
           <div className="flex min-w-0 items-center justify-end gap-1">
