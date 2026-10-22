@@ -87,10 +87,10 @@ const STEPS = [
 ];
 
 const FILMS = [
-  { src: "/videos/hero-bg.mp4", caption: "Haldi mornings" },
-  { src: "/images/indian-ceremony.jpg", caption: "Floral details" },
-  { src: "/images/wedding-decor.jpg", caption: "First looks" },
-  { src: "/images/wedding-dance.jpg", caption: "Aisle walks" },
+  { src: "/videos/hero-bg.mp4", poster: "/images/indian-ceremony.jpg", startAt: 0, caption: "Haldi mornings" },
+  { src: "/videos/hero-bg.mp4", poster: "/images/wedding-decor.jpg", startAt: 7, caption: "Floral details" },
+  { src: "/videos/hero-bg.mp4", poster: "/images/wedding-decor.jpg", startAt: 14, caption: "First looks" },
+  { src: "/videos/hero-bg.mp4", poster: "/images/wedding-dance.jpg", startAt: 21, caption: "Aisle walks" },
 ];
 
 const HERO_VIDEO = "/videos/hero-bg.mp4";
@@ -377,10 +377,15 @@ export default async function HomePage() {
     : BAND_FALLBACK;
   const filmItems = filmBlocks
     .filter((block) => metaString(block.meta, "placement", "grid") !== "band")
-    .map((block, index) => ({
-      src: localMedia(block.image, FILMS[index % FILMS.length].src),
-      caption: block.title,
-    }))
+    .map((block, index) => {
+      const fallback = FILMS[index % FILMS.length];
+      return {
+        src: localMedia(block.image, fallback.src),
+        poster: localMedia(metaString(block.meta, "poster", fallback.poster), fallback.poster),
+        startAt: Number(metaString(block.meta, "startAt", String(fallback.startAt))) || 0,
+        caption: block.title,
+      };
+    })
     .filter((item) => item.src);
   const films = filmItems.length > 0 ? filmItems : FILMS;
 
@@ -640,7 +645,7 @@ export default async function HomePage() {
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {films.map((v, i) => (
               <Reveal key={`${v.src}-${v.caption}`} delay={(i % 4) * 90} scale>
-                <VideoCard src={v.src} caption={v.caption} />
+                <VideoCard src={v.src} poster={v.poster} startAt={v.startAt} caption={v.caption} />
               </Reveal>
             ))}
           </div>

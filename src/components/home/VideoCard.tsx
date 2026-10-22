@@ -6,10 +6,12 @@ import { useEffect, useRef, useState } from "react";
 export default function VideoCard({
   src,
   poster = "/images/hero-poster.jpg",
+  startAt = 0,
   caption,
 }: {
   src: string;
   poster?: string;
+  startAt?: number;
   caption: string;
 }) {
   const ref = useRef<HTMLVideoElement>(null);
@@ -58,6 +60,11 @@ export default function VideoCard({
             preload="metadata"
             disablePictureInPicture
             aria-label={caption}
+            onLoadedMetadata={(event) => {
+              const video = event.currentTarget;
+              if (!startAt || !Number.isFinite(video.duration) || video.duration <= 0) return;
+              video.currentTime = startAt % video.duration;
+            }}
             onPlaying={() => setPlaying(true)}
             onError={() => setFailed(true)}
           />

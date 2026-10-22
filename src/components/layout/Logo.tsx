@@ -15,6 +15,8 @@ export default function Logo({
 }) {
   const src = full ? "/images/brand-logo.png" : "/images/brand-logo-256.png";
   const light = tone === "light";
+  const start = align === "start";
+  const compactFooter = full && start;
 
   return (
     <Link
@@ -22,10 +24,10 @@ export default function Logo({
       aria-label="Venue On My Plate — home"
       className={cn(
         "group inline-flex flex-col leading-none",
-        align === "center" ? "items-center text-center" : "items-start text-left"
+        start ? "items-start" : "items-center"
       )}
     >
-      <span className="relative shrink-0">
+      <span className="relative shrink-0 self-center">
         <span
           aria-hidden="true"
           className={cn(
@@ -63,9 +65,8 @@ export default function Logo({
       {!compact && (
         <span
           className={cn(
-            "flex flex-col",
-            align === "center" ? "items-center" : "items-start",
-            full ? "mt-3" : "mt-1 md:mt-1.5"
+            "flex flex-col items-center",
+            compactFooter ? "mt-3" : full ? "mt-3" : "mt-1 md:mt-1.5"
           )}
         >
           <span
@@ -83,7 +84,11 @@ export default function Logo({
           <span
             className={cn(
               "flex items-center",
-              full ? "mt-2 w-[220px] gap-2.5" : "mt-1 w-[126px] gap-1.5 md:w-[148px]"
+              compactFooter
+                ? "mt-1.5 w-[110px] gap-1.5"
+                : full
+                  ? "mt-2 w-[220px] gap-2.5"
+                  : "mt-1 w-[126px] gap-1.5 md:w-[148px]"
             )}
           >
             <span
@@ -98,9 +103,11 @@ export default function Logo({
             <span
               className={cn(
                 "font-semibold uppercase leading-none whitespace-nowrap",
-                full
-                  ? "text-[10px] tracking-[0.34em] md:text-[11px]"
-                  : "text-[7px] tracking-[0.28em] md:text-[8px] md:tracking-[0.32em]",
+                compactFooter
+                  ? "text-[9px] tracking-[0.25em]"
+                  : full
+                    ? "text-[10px] tracking-[0.34em] md:text-[11px]"
+                    : "text-[7px] tracking-[0.28em] md:text-[8px] md:tracking-[0.32em]",
                 light ? "text-[#f1d58c]" : "text-[#a67c1a]"
               )}
             >
