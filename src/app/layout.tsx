@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import Script from "next/script";
 import ConciergeChat from "@/components/chat/ConciergeChat";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
@@ -49,11 +50,25 @@ export const viewport = {
   themeColor: "#5c0a20",
 };
 
+const homeScrollReset = `(function () {
+  try {
+    if (location.pathname !== "/" || location.hash) return;
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+    window.addEventListener("load", function () {
+      if (!location.hash) window.scrollTo(0, 0);
+    }, { once: true });
+  } catch (_) {}
+})();`;
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const venues = await getVenues();
   return (
     <html lang="en-IN" className={body.variable}>
       <body className="min-h-screen">
+        <Script id="home-scroll-reset" strategy="beforeInteractive">
+          {homeScrollReset}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }}
