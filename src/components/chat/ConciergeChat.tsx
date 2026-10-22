@@ -85,7 +85,7 @@ export default function ConciergeChat({ venues }: { venues: Venue[] }) {
               setLeadData((d) => ({ ...d, phone: digits }));
               setLead("awaitCity");
               pushBot({ text: "Noted. And which city is the celebration in?", });
-              setChips(["Udaipur", "Jaipur", "Goa", "Delhi NCR", "Mumbai", "Somewhere else"]);
+              setChips(["Udaipur", "Jaipur", "Jodhpur", "Jaisalmer", "Goa", "Somewhere else"]);
             }
           } else if (lead === "awaitCity") {
             const done = { ...leadData, city: trimmed };

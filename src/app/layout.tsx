@@ -69,8 +69,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         >
           Skip to content
         </a>
-        <link rel="preconnect" href="https://images.unsplash.com" />
-        <link rel="preconnect" href="https://images.pexels.com" />
         <Header />
         <main id="main">{children}</main>
         <Footer />

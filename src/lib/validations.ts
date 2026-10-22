@@ -35,4 +35,12 @@ export const GUEST_BANDS = [
   "1000+",
 ] as const;
 
-export const CITIES = ["Udaipur", "Jaipur", "Goa", "Delhi NCR", "Mumbai", "Bangalore"] as const;
+export const CITIES = [
+  "Udaipur",
+  "Jaipur",
+  "Jodhpur",
+  "Jaisalmer",
+  "Sawai Madhopur",
+  "Goa",
+  "Other",
+] as const;

@@ -7,9 +7,9 @@ const columns = [
     title: "Venues",
     links: [
       { label: "All venues", href: "/venues" },
-      { label: "Wedding venues", href: "/venues?event=Wedding" },
-      { label: "Corporate venues", href: "/venues?event=Corporate event" },
-      { label: "Private parties", href: "/venues?event=Birthday / Anniversary" },
+      { label: "Wedding venues", href: "/wedding-venues" },
+      { label: "Corporate venues", href: "/venues?event=Corporate" },
+      { label: "Private parties", href: "/venues?event=Birthday" },
     ],
   },
   {
@@ -17,9 +17,9 @@ const columns = [
     links: [
       { label: "Udaipur", href: "/cities/udaipur" },
       { label: "Jaipur", href: "/cities/jaipur" },
+      { label: "Jodhpur", href: "/cities/jodhpur" },
+      { label: "Jaisalmer", href: "/cities/jaisalmer" },
       { label: "Goa", href: "/cities/goa" },
-      { label: "Delhi NCR", href: "/cities/delhi-ncr" },
-      { label: "Mumbai", href: "/cities/mumbai" },
     ],
   },
   {

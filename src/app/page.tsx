@@ -32,9 +32,9 @@ import type { ContentBlock, Faq } from "@/types";
 const TICKER = [
   "Udaipur",
   "Jaipur",
+  "Jodhpur",
+  "Jaisalmer",
   "Goa",
-  "Delhi NCR",
-  "Mumbai",
   "Weddings",
   "Sangeet",
   "Haldi",
@@ -44,23 +44,23 @@ const TICKER = [
 
 const GALLERY = [
   {
-    src: "https://images.pexels.com/photos/35985256/pexels-photo-35985256.jpeg?auto=compress&cs=tinysrgb&w=900",
-    alt: "White floral decoration with golden table outdoors",
+    src: "/images/indian-ceremony.jpg",
+    alt: "Indian wedding ceremony with warm floral details",
     mood: "Grand celebrations",
   },
   {
-    src: "https://images.pexels.com/photos/38254676/pexels-photo-38254676.jpeg?auto=compress&cs=tinysrgb&w=900",
-    alt: "Cream wedding mandap with marigold hangings",
+    src: "/images/udaipur-palace2.jpg",
+    alt: "Udaipur palace architecture reflected in the lake",
     mood: "Palace weddings",
   },
   {
-    src: "https://images.pexels.com/photos/32476128/pexels-photo-32476128.jpeg?auto=compress&cs=tinysrgb&w=900",
-    alt: "White floral bouquets on a wedding table",
+    src: "/images/wedding-decor.jpg",
+    alt: "Wedding decor with florals and warm lighting",
     mood: "Floral tablescapes",
   },
   {
-    src: "https://images.pexels.com/photos/37828118/pexels-photo-37828118.jpeg?auto=compress&cs=tinysrgb&w=900",
-    alt: "White canopy mandap in daylight",
+    src: "/images/wedding-dance.jpg",
+    alt: "Family celebrating together at an Indian wedding",
     mood: "Open-air mandaps",
   },
 ];
@@ -87,11 +87,22 @@ const STEPS = [
 ];
 
 const FILMS = [
-  { src: "https://videos.pexels.com/video-files/35067978/14854574_960_540_50fps.mp4", caption: "Haldi mornings" },
-  { src: "https://videos.pexels.com/video-files/35222217/14921664_960_540_50fps.mp4", caption: "Floral details" },
-  { src: "https://videos.pexels.com/video-files/34519848/14625946_960_540_24fps.mp4", caption: "First looks" },
-  { src: "https://videos.pexels.com/video-files/27979648/12279918_960_540_25fps.mp4", caption: "Aisle walks" },
+  { src: "/videos/hero-bg.mp4", caption: "Haldi mornings" },
+  { src: "/images/indian-ceremony.jpg", caption: "Floral details" },
+  { src: "/images/wedding-decor.jpg", caption: "First looks" },
+  { src: "/images/wedding-dance.jpg", caption: "Aisle walks" },
 ];
+
+const HERO_VIDEO = "/videos/hero-bg.mp4";
+const HERO_POSTER = "/images/hero-poster.jpg";
+
+function localMedia(src: string | undefined, fallback: string) {
+  return src && src.startsWith("/") ? src : fallback;
+}
+
+function localVideo(src: string | undefined) {
+  return src && src.startsWith("/") && /\.(mp4|webm|mov|m4v)(\?|$)/i.test(src) ? src : HERO_VIDEO;
+}
 
 const HEADING_FALLBACKS: Record<string, Heading> = {
   highlights: {
@@ -157,8 +168,8 @@ const ABOUT_FALLBACK = {
   eyebrow: "About us",
   title: "Luxury venue access shaped around your family",
   body: "Venue On My Plate brings private venue intelligence, high-touch shortlisting, and discreet proposal support for weddings and landmark celebrations that deserve more than a generic listing page.",
-  image: "https://images.pexels.com/photos/35985196/pexels-photo-35985196.jpeg?auto=compress&cs=tinysrgb&w=1100",
-  alt: "Bright white wedding reception tablescape",
+  image: "/images/wedding-decor.jpg",
+  alt: "Wedding reception decor with florals and warm lighting",
   linkLabel: "More about us",
   linkHref: "/about",
   phone: "+91 94624 60555",
@@ -171,7 +182,8 @@ const ABOUT_FALLBACK = {
 };
 
 const BAND_FALLBACK = {
-  src: "https://videos.pexels.com/video-files/20697239/20697239-hd_1280_720_25fps.mp4",
+  src: "/videos/hero-bg.mp4",
+  poster: "/images/hero-poster.jpg",
   eyebrow: "Signature stages",
   title: "Drapes, blooms and morning light.",
   linkLabel: "Explore venues",
@@ -181,7 +193,7 @@ const BAND_FALLBACK = {
 const SEO_FALLBACK = {
   title: "Finding wedding and party venues in India, without the legwork.",
   paragraphs: [
-    "Venue On My Plate helps you discover venues for weddings, receptions, birthdays, corporate events and private celebrations across India — from heritage palaces in Udaipur and garden resorts in Jaipur to beach venues in Goa and banquet estates in Delhi NCR.",
+    "Venue On My Plate helps you discover venues for weddings, receptions, birthdays, corporate events and private celebrations across India — from heritage palaces in Udaipur and garden resorts in Jaipur to desert forts in Jaisalmer, palace courtyards in Jodhpur and beach venues in Goa.",
     "We focus only on venues — not decor, catering, or photography. Our team helps you compare venue flow, ceremony zones, guest movement, rooms and private quote options, so haldi mornings, sangeet evenings and the wedding day itself start from the right venue choice.",
     "Start by browsing all venues or pick a destination such as Udaipur, Jaipur or Goa. Want ideas first? The journal covers costs, seasonality and visit checklists.",
   ],
@@ -286,11 +298,11 @@ export default async function HomePage() {
   const heroVideoBlock = heroBlocks.find((block) => block.blockKey === "video");
   const heroSlides: HeroSlide[] = heroBlocks
     .filter((block) => block.blockKey !== "video")
-    .map((block) => ({
+    .map((block, index) => ({
       eyebrow: block.subtitle,
       title: block.title,
       copy: block.body,
-      image: block.image,
+      image: localMedia(block.image, GALLERY[index % GALLERY.length].src),
       alt: block.imageAlt,
       primary: { label: block.linkLabel || "Explore venues", href: block.linkHref || "/venues" },
       secondary: {
@@ -309,7 +321,7 @@ export default async function HomePage() {
         eyebrow: aboutBlock.subtitle || ABOUT_FALLBACK.eyebrow,
         title: aboutBlock.title || ABOUT_FALLBACK.title,
         body: aboutBlock.body || ABOUT_FALLBACK.body,
-        image: aboutBlock.image || ABOUT_FALLBACK.image,
+        image: localMedia(aboutBlock.image, ABOUT_FALLBACK.image),
         alt: aboutBlock.imageAlt || ABOUT_FALLBACK.alt,
         linkLabel: aboutBlock.linkLabel || ABOUT_FALLBACK.linkLabel,
         linkHref: aboutBlock.linkHref || ABOUT_FALLBACK.linkHref,
@@ -344,16 +356,19 @@ export default async function HomePage() {
     : STEPS;
 
   const galleryBlocks = bySection(content, "gallery");
-  const galleryItems = galleryBlocks
-    .map((block) => ({ src: block.image, alt: block.imageAlt || block.title, mood: block.title }))
-    .filter((item) => item.src);
+  const galleryItems = galleryBlocks.map((block, index) => ({
+    src: localMedia(block.image, GALLERY[index % GALLERY.length].src),
+    alt: block.imageAlt || block.title,
+    mood: block.title,
+  }));
   const gallery = galleryItems.length > 0 ? galleryItems : GALLERY;
 
   const filmBlocks = bySection(content, "film");
   const bandBlock = filmBlocks.find((block) => metaString(block.meta, "placement", "grid") === "band");
   const band = bandBlock
     ? {
-        src: bandBlock.image || BAND_FALLBACK.src,
+        src: localMedia(bandBlock.image, BAND_FALLBACK.src),
+        poster: localMedia(bandBlock.meta?.poster as string | undefined, HERO_POSTER),
         eyebrow: bandBlock.subtitle || BAND_FALLBACK.eyebrow,
         title: bandBlock.title || BAND_FALLBACK.title,
         linkLabel: bandBlock.linkLabel || BAND_FALLBACK.linkLabel,
@@ -362,7 +377,10 @@ export default async function HomePage() {
     : BAND_FALLBACK;
   const filmItems = filmBlocks
     .filter((block) => metaString(block.meta, "placement", "grid") !== "band")
-    .map((block) => ({ src: block.image, caption: block.title }))
+    .map((block, index) => ({
+      src: localMedia(block.image, FILMS[index % FILMS.length].src),
+      caption: block.title,
+    }))
     .filter((item) => item.src);
   const films = filmItems.length > 0 ? filmItems : FILMS;
 
@@ -370,6 +388,12 @@ export default async function HomePage() {
   const faqs: Faq[] = faqBlocks.length
     ? faqBlocks.map((block) => ({ question: block.title, answer: block.body }))
     : generalFaqs.slice(0, 6);
+
+  const cityCards = cities.map((city) => {
+    if (city.image?.startsWith("/")) return city;
+    const venue = venues.find((item) => item.citySlug === city.slug && item.image?.startsWith("https://"));
+    return venue?.image ? { ...city, image: venue.image } : city;
+  });
 
   const testimonials: Testimonial[] = reviewRows.map((review) => ({
     id: review.id,
@@ -429,13 +453,14 @@ export default async function HomePage() {
 
       <Hero
         slides={heroSlides}
-        video={heroVideoBlock?.title}
-        poster={heroVideoBlock?.image}
+        video={localVideo(heroVideoBlock?.title)}
+        poster={localMedia(heroVideoBlock?.image, HERO_POSTER)}
         posterAlt={heroVideoBlock?.imageAlt}
       />
 
       <CinematicBand
         src={band.src}
+        poster={band.poster}
         eyebrow={band.eyebrow}
         title={band.title}
         linkLabel={band.linkLabel}
@@ -503,7 +528,7 @@ export default async function HomePage() {
           <h2 id="cities-heading" className="sr-only">Popular destinations</h2>
           <Reveal delay={120}>
           <div className="no-scrollbar -mx-5 mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0">
-            {cities.map((c) => (
+            {cityCards.map((c) => (
               <div key={c.slug} className="w-[85%] shrink-0 snap-center sm:w-[60%] md:w-auto">
                 <CityCard city={c} />
               </div>

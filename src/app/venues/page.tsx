@@ -12,7 +12,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildMetadata({
   title: "Explore wedding & celebration venues across India",
   description:
-    "Browse curated palaces, resorts, lawns, hotels and banquets across Udaipur, Jaipur, Goa, Delhi NCR, Mumbai and Bangalore. Filter by city, size and type.",
+    "Browse curated palaces, resorts, lawns, hotels and banquets across Udaipur, Jaipur, Jodhpur, Jaisalmer, Sawai Madhopur and Goa. Filter by city, size and type.",
   path: "/venues",
 });
 

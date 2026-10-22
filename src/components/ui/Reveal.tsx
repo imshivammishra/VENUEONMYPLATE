@@ -16,32 +16,42 @@ export default function Reveal({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    // Keep the server-rendered content visible until hydration, then apply the
+    // reveal transition. A timeout is the safety net for mobile browsers that
+    // throttle IntersectionObserver during client-side navigation.
+    setReady(true);
     const el = ref.current;
     if (!el) return;
     if (typeof IntersectionObserver === "undefined") {
       setInView(true);
       return;
     }
+    const fallback = window.setTimeout(() => setInView(true), 1200);
     const io = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
           setInView(true);
+          window.clearTimeout(fallback);
           io.disconnect();
         }
       },
-      { threshold: 0.1, rootMargin: "0px 0px -48px 0px" }
+      { threshold: 0.08, rootMargin: "0px 0px -32px 0px" }
     );
     io.observe(el);
-    return () => io.disconnect();
+    return () => {
+      window.clearTimeout(fallback);
+      io.disconnect();
+    };
   }, []);
 
   return (
     <div
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
-      className={cn("rv", scale && "rv-scale", inView && "rv-in", className)}
+      className={cn(ready && "rv", scale && "rv-scale", inView && "rv-in", className)}
     >
       {children}
     </div>

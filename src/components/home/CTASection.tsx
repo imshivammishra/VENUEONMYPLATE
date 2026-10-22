@@ -1,10 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 
-const CTA_VIDEO =
-  "https://videos.pexels.com/video-files/35222217/14921664_960_540_50fps.mp4";
+const CTA_VIDEO = "/videos/hero-bg.mp4";
 
 export default function CTASection({
   title,
@@ -30,13 +30,22 @@ export default function CTASection({
   }, []);
 
   return (
-    <section aria-label="Call to action" className="relative overflow-hidden bg-black text-white">
+    <section aria-label="Call to action" className="relative overflow-hidden bg-[#2b1218] text-white">
+      <Image
+        src="/images/hero-poster.jpg"
+        alt=""
+        aria-hidden="true"
+        fill
+        sizes="100vw"
+        className="object-cover opacity-45"
+      />
       <video
         ref={videoRef}
         aria-hidden="true"
         tabIndex={-1}
-        className="absolute inset-0 h-full w-full object-cover opacity-45"
+        className="absolute inset-0 h-full w-full object-cover opacity-35"
         src={CTA_VIDEO}
+        poster="/images/hero-poster.jpg"
         autoPlay
         muted
         loop

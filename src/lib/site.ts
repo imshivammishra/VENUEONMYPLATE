@@ -12,5 +12,5 @@ export const SITE = {
   whatsapp: "",
   hours: "Mon–Sat, 10am–7pm IST",
   responseNote: "Within one business day",
-  destinations: ["Udaipur", "Jaipur", "Goa", "Delhi NCR", "Mumbai", "Bangalore"],
+  destinations: ["Udaipur", "Jaipur", "Jodhpur", "Jaisalmer", "Sawai Madhopur", "Goa"],
 } as const;

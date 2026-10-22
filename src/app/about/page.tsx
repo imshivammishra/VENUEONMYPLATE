@@ -60,9 +60,10 @@ export default async function AboutPage() {
       aboutBlock?.body ||
       "Venue On My Plate began with a simple frustration: beautiful venues, scattered information, and quotes that arrive too late. We visit venues, verify capacity and logistics, and present honest trade-offs — so you decide with confidence.",
     image:
-      aboutBlock?.image ||
-      "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1400&auto=format&fit=crop",
-    alt: aboutBlock?.imageAlt || "Newlywed send-off with sparklers",
+      aboutBlock?.image?.startsWith("/")
+        ? aboutBlock.image
+        : "/images/wedding-decor.jpg",
+    alt: aboutBlock?.imageAlt || "Wedding reception decor with florals and warm lighting",
     badge: metaString(aboutBlock?.meta, "badge", "Private, quote-led shortlists"),
     stats: metaStats(aboutBlock?.meta, FALLBACK_STATS),
   };
@@ -72,7 +73,10 @@ export default async function AboutPage() {
     : FALLBACK_VALUES;
 
   const film = {
-    src: band?.image || "https://videos.pexels.com/video-files/35222217/14921664_960_540_50fps.mp4",
+    src:
+      band?.image?.startsWith("/") && /\.(mp4|webm|mov|m4v)(\?|$)/i.test(band.image)
+        ? band.image
+        : "/images/indian-ceremony.jpg",
     caption: band?.title || "Floral details, verified in person",
   };
 

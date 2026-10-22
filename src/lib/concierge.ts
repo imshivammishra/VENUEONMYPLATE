@@ -70,16 +70,14 @@ function matchCity(input: string, venues: Venue[]): string | null {
     ...cityNames(venues),
     "Udaipur",
     "Jaipur",
-    "Goa",
-    "Delhi NCR",
-    "Delhi",
-    "Mumbai",
-    "Bangalore",
     "Jodhpur",
+    "Jaisalmer",
+    "Sawai Madhopur",
+    "Goa",
   ];
   const low = input.toLowerCase();
   for (const c of known) {
-    if (low.includes(c.toLowerCase())) return c === "Delhi" ? "Delhi NCR" : c;
+    if (low.includes(c.toLowerCase())) return c;
   }
   return null;
 }
@@ -297,7 +295,7 @@ export function conciergeReply(raw: string, venues: Venue[]): BotReply {
     return {
       text: "For corporate offsites prioritise pillarless halls, AV, strong Wi-Fi and room inventory over sheer beauty — day packages with conferencing + lunch often beat wedding quotes. Tell me headcount and I will shortlist.",
       links: [{ label: "Corporate venues", href: "/venues?event=Corporate%20event" }, ...CONTACT_LINKS],
-      suggest: ["Venues in Delhi NCR", "Request callback"],
+      suggest: ["Venues in Jodhpur", "Request callback"],
     };
   }
 
@@ -306,7 +304,7 @@ export function conciergeReply(raw: string, venues: Venue[]): BotReply {
     return {
       text: "Milestone celebrations shine in intimate formats — 80–250 guests in villas, terraces and boutique ballrooms. Rooftops at golden hour plus a live counter beat a half-empty big hall every time.",
       links: [{ label: "Private party venues", href: "/venues?event=Birthday%20%2F%20Anniversary" }],
-      suggest: ["Venues in Mumbai", "What are prices like?"],
+      suggest: ["Venues in Jaisalmer", "What are prices like?"],
     };
   }
 

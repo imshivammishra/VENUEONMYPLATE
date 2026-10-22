@@ -37,6 +37,10 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
   if (!data) notFound();
   const all = await getVenues();
   const featured = all.filter((v) => v.citySlug === data.slug);
+  const heroImage =
+    data.image?.startsWith("/") || featured.length === 0
+      ? data.image
+      : featured.find((venue) => venue.image?.startsWith("https://"))?.image || data.image;
 
   const faqs = [
     {
@@ -62,7 +66,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
     <>
       <div className="relative flex min-h-[70vh] items-end overflow-hidden bg-black">
         <Image
-          src={data.image}
+          src={heroImage}
           alt={data.imageAlt}
           fill
           priority

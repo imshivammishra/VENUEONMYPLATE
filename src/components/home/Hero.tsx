@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -23,8 +24,8 @@ const SLIDES: HeroSlide[] = [
     eyebrow: "Venue On My Plate",
     title: "A venue as unforgettable as your love story.",
     copy: "Palaces, lakefront estates and private resorts — curated for families who expect every detail to feel considered.",
-    image: "https://images.pexels.com/photos/38951530/pexels-photo-38951530.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    alt: "White floral wedding stage on a green lawn",
+    image: "/images/indian-ceremony.jpg",
+    alt: "Indian wedding ceremony with warm floral details",
     primary: { label: "Explore venues", href: "/venues" },
     secondary: { label: "Get a private quote", href: "/contact" },
   },
@@ -41,8 +42,8 @@ const SLIDES: HeroSlide[] = [
     eyebrow: "Shortlist in a day",
     title: "Your dream shortlist, in one day flat.",
     copy: "Share your city, date, guest count and mood. Receive a bespoke shortlist with private quote-led options in one business day.",
-    image: "https://images.pexels.com/photos/32854443/pexels-photo-32854443.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    alt: "White draped wedding mandap with crystal chandelier",
+    image: "/images/wedding-decor.jpg",
+    alt: "Wedding decor with florals and warm lighting",
     primary: { label: "How it works", href: "#how-it-works" },
     secondary: { label: "Talk to an expert", href: "/contact" },
   },
@@ -61,9 +62,12 @@ export default function Hero({
 }) {
   const activeSlides = slides.length > 0 ? slides : SLIDES;
   const slideCount = activeSlides.length;
-  const activeVideo = video || HERO_VIDEO;
-  const activePoster = poster || activeSlides[0]?.image;
+  const activeVideo =
+    video && video.startsWith("/") && /\.(mp4|webm|mov|m4v)(\?|$)/i.test(video) ? video : HERO_VIDEO;
+  const activePoster =
+    poster && poster.startsWith("/") ? poster : activeSlides[0]?.image || "/images/hero-poster.jpg";
   const [index, setIndex] = useState(0);
+  const [playing, setPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const go = useCallback((dir: 1 | -1) => {
     setIndex((i) => (i + dir + slideCount) % slideCount);
@@ -133,12 +137,22 @@ export default function Hero({
 
       {/* Video feature card */}
       <div className="relative mx-auto max-w-[1200px] px-4 pb-4 md:px-6">
-        <div className="relative overflow-hidden rounded-[28px] bg-black shadow-[0_40px_90px_-32px_rgba(166,124,26,0.5)] ring-1 ring-[#eed9a3]">
+        <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[28px] bg-[#2b1218] shadow-[0_40px_90px_-32px_rgba(166,124,26,0.5)] ring-1 ring-[#eed9a3] md:aspect-[21/9]">
+          <Image
+            src={activePoster.startsWith("/") ? activePoster : "/images/hero-poster.jpg"}
+            alt={posterAlt || "Wedding venue highlights"}
+            fill
+            sizes="(max-width: 768px) 100vw, 1200px"
+            priority
+            className="object-cover"
+          />
           <video
             ref={videoRef}
-            className="aspect-[16/10] w-full object-cover md:aspect-[21/9]"
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+              playing ? "opacity-100" : "opacity-0"
+            }`}
             src={activeVideo}
-            poster={activePoster}
+            poster={activePoster.startsWith("/") ? activePoster : "/images/hero-poster.jpg"}
             autoPlay
             muted
             loop
@@ -146,8 +160,9 @@ export default function Hero({
             disablePictureInPicture
             preload="auto"
             aria-label={posterAlt || "Wedding venue highlights video"}
+            onPlaying={() => setPlaying(true)}
           />
-          <div className="absolute bottom-4 left-4 flex gap-2">
+          <div className="absolute bottom-4 left-4 z-10 flex gap-2">
             <button type="button" onClick={() => go(-1)} aria-label="Previous slide" className="grid h-9 w-9 place-items-center rounded-full bg-white/85 text-[#1d1d1f] backdrop-blur transition hover:bg-white">
               <ChevronLeft size={17} />
             </button>
@@ -164,9 +179,9 @@ export default function Hero({
             {[
               { label: "Udaipur", href: "/venues?city=Udaipur" },
               { label: "Jaipur", href: "/venues?city=Jaipur" },
+              { label: "Jodhpur", href: "/venues?city=Jodhpur" },
+              { label: "Jaisalmer", href: "/venues?city=Jaisalmer" },
               { label: "Goa", href: "/venues?city=Goa" },
-              { label: "Delhi NCR", href: "/venues?city=Delhi NCR" },
-              { label: "Mumbai", href: "/venues?city=Mumbai" },
             ].map((p) => (
               <Link key={p.label} href={p.href} className="text-[#1d1d1f] underline decoration-black/30 underline-offset-4 hover:decoration-black">
                 {p.label}

@@ -72,7 +72,7 @@ const SETTINGS_FALLBACK: SiteSettings = {
   email: SITE.email,
   phone: SITE.phoneDisplay,
   whatsapp: SITE.whatsapp,
-  address: "Udaipur · Jaipur · Goa · Delhi NCR · Mumbai",
+  address: "Udaipur · Jaipur · Jodhpur · Jaisalmer · Goa",
   hours: SITE.hours,
   responseNote: SITE.responseNote,
   instagram: "https://instagram.com/venueonmyplate",
