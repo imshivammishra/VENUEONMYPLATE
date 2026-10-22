@@ -55,7 +55,7 @@ export default function Logo({
             className={cn(
               "relative shrink-0 rounded-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.025]",
               imageOnly
-                ? "h-[60px] w-[60px] md:h-[74px] md:w-[74px]"
+                ? "h-[56px] w-[56px] md:h-[68px] md:w-[68px]"
                 : full
                   ? "h-[88px] w-[88px] md:h-[100px] md:w-[100px]"
                   : compact
