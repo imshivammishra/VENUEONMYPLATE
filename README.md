@@ -1,8 +1,8 @@
 # Venue On My Plate — Public Website
 
 The customer-facing venue discovery site for **Venue On My Plate**. Built with
-Next.js 15 (App Router), React 19, Tailwind CSS v4 and TypeScript, and designed
-to run on a Contabo VPS behind Nginx + PM2.
+Next.js 15 (App Router), React 19, Tailwind CSS v4 and TypeScript, and running on
+a Contabo VPS under PM2. Nginx and HTTPS are planned for the domain phase.
 
 ## Stack
 
@@ -11,7 +11,7 @@ to run on a Contabo VPS behind Nginx + PM2.
 | Framework | Next.js 15 / React 19 |
 | Styling | Tailwind CSS v4, self-hosted Cormorant + Inter |
 | Data | Venue On My Plate API (`/api/v1/public/*`) with safe fallbacks |
-| Hosting | Contabo VPS, Nginx reverse proxy, PM2, Let's Encrypt |
+| Hosting | Contabo VPS, direct IP ports under PM2; Nginx/Let's Encrypt planned |
 | CI | GitHub Actions |
 
 ## Local development
@@ -35,8 +35,9 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3100
 ```
 
 Browser requests stay on the website origin (`/api`); Next.js proxies them to
-the private API during local development, and Nginx does the same in
-production.
+the private API during local development and in the current direct-port
+production setup. Nginx will take over that public entry point when HTTPS is
+enabled.
 
 ### Scripts
 
@@ -94,15 +95,20 @@ files are never committed.
 - Public content revalidates every 60 seconds (`next: { revalidate: 60 }`).
 - Hardcoded fallbacks keep the site renderable if the API is briefly unavailable.
 - Reviews remain hidden until real reviews are published.
-- Uploaded media is served from `/uploads/library/<file>` on the same origin.
+- Imported catalogue images use their existing S3 URLs; new admin uploads are
+  served from `/uploads/library/<file>` on the same origin.
 
 ## Deployment
 
-**Current phase:** website, admin and API run on the VPS. The production SQLite
-database is freshly seeded and has no real venues yet, so the public site shows
-its built-in fallback catalogue. The 642-venue legacy catalogue remains in the
-separate Docker Postgres stack, untouched, until a data migration is approved.
-Admin runs on port `3102` over plain HTTP; restrict it or add HTTPS promptly.
+**Current phase:** website, admin and API run live on the VPS. The production
+SQLite database contains the migrated catalogue: 642 venues (232 published,
+404 draft, 6 archived), 6,185 media records and 20 enquiries. The public site
+serves 232 published venue pages from the API. The legacy Docker Postgres stack
+remains running and untouched as a safety copy. Admin runs on port `3102` over
+plain HTTP by temporary approval; restrict it or add HTTPS promptly.
+
+- Website: <http://94.136.188.197:3100>
+- Admin: <http://94.136.188.197:3102> (temporary HTTP exposure)
 
 This repository is the public website (`VOMP-MAIN`) in the current Contabo
 layout:
