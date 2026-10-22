@@ -3,9 +3,8 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const GUEST_OPTIONS = ["", "Under 100", "100–300", "300–600", "600–1000", "1000+"];
-const TYPE_OPTIONS = ["", "Heritage Palace", "Garden Resort", "Beach Resort", "Hotel Venue", "Resort", "Banquet & Lawns"];
 
-export default function VenueFilters({ cities }: { cities: string[] }) {
+export default function VenueFilters({ cities, types }: { cities: string[]; types: string[] }) {
   const router = useRouter();
   const pathname = usePathname();
   const params = useSearchParams();
@@ -54,8 +53,9 @@ export default function VenueFilters({ cities }: { cities: string[] }) {
           value={params.get("type") ?? ""}
           onChange={(e) => set("type", e.target.value)}
         >
-          {TYPE_OPTIONS.map((t) => (
-            <option key={t || "any"} value={t}>{t || "All types"}</option>
+          <option value="">All types</option>
+          {types.map((t) => (
+            <option key={t} value={t}>{t}</option>
           ))}
         </select>
       </label>

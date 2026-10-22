@@ -46,7 +46,8 @@ export default async function VenuesPage({
       matchesGuests(v.capacityMax, guests)
   );
 
-  const cities = [...new Set(venues.map((v) => v.city))];
+  const cities = [...new Set(venues.map((v) => v.city))].sort();
+  const types = [...new Set(venues.map((v) => v.type).filter(Boolean))].sort();
   const summary =
     filtered.length > 0
       ? `${filtered.length} ${filtered.length === 1 ? "venue" : "venues"}${city ? ` in ${city}` : " across India"} — every one visited or vetted by our team.`
@@ -73,7 +74,7 @@ export default async function VenuesPage({
           <Reveal delay={200}>
             <div className="mt-10 rounded-[18px] bg-[#f5f5f7] px-5 py-5 md:px-7 md:py-6">
               <Suspense fallback={<p className="text-sm text-[#6e6e73]">Loading filters…</p>}>
-                <VenueFilters cities={cities} />
+                <VenueFilters cities={cities} types={types} />
               </Suspense>
             </div>
           </Reveal>
