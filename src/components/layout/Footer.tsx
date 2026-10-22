@@ -51,12 +51,12 @@ export default async function Footer() {
         style={{ backgroundImage: "linear-gradient(90deg, #5c0a20, #7f0f2e 30%, #d4a437 65%, #a67c1a)" }}
       />
       <div className="mx-auto max-w-[1024px] px-5 pt-10 pb-6 md:px-6">
-        <div className="flex flex-col items-center pb-10 text-center">
-          <Logo tone="dark" full align="center" />
+        <div className="flex flex-col items-start pb-10 text-left">
+          <Logo tone="dark" full align="start" />
           <p className="mt-5 text-[11px] font-semibold tracking-[0.32em] text-[#6e6e73] uppercase">
             {settings.tagline}
           </p>
-          <p className="mx-auto mt-3 max-w-sm text-[14px] leading-relaxed text-[#6e6e73]">
+          <p className="mt-3 max-w-sm text-[14px] leading-relaxed text-[#6e6e73]">
             {settings.footerNote}
           </p>
           <a href={phoneHref} className="mt-4 inline-block text-[22px] font-bold tracking-tight text-[#1d1d1f] hover:underline">

@@ -126,7 +126,7 @@ function DesktopNav({ items }: { items: NavItem[] }) {
             </Link>
 
             {item.children && drop === item.label && (
-              <div className="drop-in absolute top-full left-1/2 w-[318px] -translate-x-1/2 pt-4 whitespace-normal">
+              <div className="drop-in absolute top-full left-0 w-[318px] pt-4 whitespace-normal">
                 <div className="overflow-hidden border border-[#c6a04a]/70 bg-[#fffaf0] shadow-[0_30px_70px_-24px_rgba(24,2,9,0.7)]">
                   <div className="border-b border-[#c6a04a]/50 bg-[#45081b] px-5 py-4">
                     <p className="text-[9px] font-semibold tracking-[0.32em] text-[#e7c77e] uppercase">
