@@ -46,6 +46,9 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   experimental: { optimizePackageImports: ["lucide-react"] },
   images: {
+    // Serve the already-optimised venue assets directly. This avoids cold
+    // image-optimizer jobs on catalogue pages with hundreds of cards.
+    unoptimized: true,
     formats: ["image/avif", "image/webp"],
     qualities: [60, 65, 70, 75],
     remotePatterns: [
