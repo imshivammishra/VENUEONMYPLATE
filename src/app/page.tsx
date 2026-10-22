@@ -30,16 +30,16 @@ import { faqJsonLd } from "@/lib/seo";
 import type { ContentBlock, Faq } from "@/types";
 
 const TICKER = [
+  "Mehendi",
+  "Haldi",
+  "Sangeet",
+  "Saat Pheras",
+  "Reception",
+  "Baraat",
   "Udaipur",
   "Jaipur",
   "Jodhpur",
-  "Jaisalmer",
   "Goa",
-  "Weddings",
-  "Sangeet",
-  "Haldi",
-  "Receptions",
-  "Corporate",
 ];
 
 const GALLERY = [

@@ -21,9 +21,8 @@ export default function Logo({
       href="/"
       aria-label="Venue On My Plate — home"
       className={cn(
-        "group inline-flex items-center leading-none",
-        compact ? "gap-0" : "gap-2.5 md:gap-3.5",
-        align === "center" && "justify-center text-center"
+        "group inline-flex flex-col leading-none",
+        align === "center" ? "items-center text-center" : "items-start text-left"
       )}
     >
       <span className="relative shrink-0">
@@ -52,10 +51,10 @@ export default function Logo({
             className={cn(
               "relative shrink-0 rounded-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.025]",
               full
-                ? "h-[96px] w-[96px] md:h-[112px] md:w-[112px]"
+                ? "h-[88px] w-[88px] md:h-[100px] md:w-[100px]"
                 : compact
                   ? "h-10 w-10"
-                  : "h-[56px] w-[56px] md:h-[72px] md:w-[72px]"
+                  : "h-[46px] w-[46px] md:h-[56px] md:w-[56px]"
             )}
           />
         </span>
@@ -64,14 +63,15 @@ export default function Logo({
       {!compact && (
         <span
           className={cn(
-            "flex min-w-0 flex-col",
-            align === "center" ? "items-center" : "items-start"
+            "flex flex-col",
+            align === "center" ? "items-center" : "items-start",
+            full ? "mt-3" : "mt-1 md:mt-1.5"
           )}
         >
           <span
             className={cn(
-              "font-display leading-[0.78] font-semibold tracking-[0.005em] whitespace-nowrap transition-colors duration-300",
-              full ? "text-[38px] md:text-[48px]" : "text-[29px] md:text-[40px]",
+              "font-display leading-[0.8] font-semibold tracking-[0.005em] whitespace-nowrap transition-colors duration-300",
+              full ? "text-[38px] md:text-[44px]" : "text-[24px] md:text-[29px]",
               light
                 ? "text-[#fff8e8] group-hover:text-[#f1d58c]"
                 : "text-[#4a0719] group-hover:text-[#7f0f2e]"
@@ -82,8 +82,8 @@ export default function Logo({
 
           <span
             className={cn(
-              "flex w-full items-center",
-              full ? "mt-2.5 gap-3" : "mt-1 gap-1.5 md:mt-1.5 md:gap-2"
+              "flex items-center",
+              full ? "mt-2 w-[220px] gap-2.5" : "mt-1 w-[126px] gap-1.5 md:w-[148px]"
             )}
           >
             <span
@@ -99,8 +99,8 @@ export default function Logo({
               className={cn(
                 "font-semibold uppercase leading-none whitespace-nowrap",
                 full
-                  ? "text-[11px] tracking-[0.38em] md:text-[13px] md:tracking-[0.4em]"
-                  : "text-[8px] tracking-[0.3em] md:text-[9px] md:tracking-[0.34em]",
+                  ? "text-[10px] tracking-[0.34em] md:text-[11px]"
+                  : "text-[7px] tracking-[0.28em] md:text-[8px] md:tracking-[0.32em]",
                 light ? "text-[#f1d58c]" : "text-[#a67c1a]"
               )}
             >
@@ -115,15 +115,6 @@ export default function Logo({
                   : "bg-gradient-to-l from-transparent to-[#c6a04a]"
               )}
             />
-          </span>
-          <span
-            className={cn(
-              "mt-1.5 text-[6.5px] font-semibold tracking-[0.22em] uppercase md:text-[7px]",
-              light ? "text-[#e7c77e]/80" : "text-[#a67c1a]/80",
-              !full && "hidden md:block"
-            )}
-          >
-            Wedding &amp; celebration venues
           </span>
         </span>
       )}
