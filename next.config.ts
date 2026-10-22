@@ -49,8 +49,7 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     qualities: [60, 65, 70, 75],
     remotePatterns: [
-      { protocol: "https", hostname: "images.unsplash.com" },
-      { protocol: "https", hostname: "images.pexels.com" },
+      { protocol: "https", hostname: "vomp-media.s3.ap-south-1.amazonaws.com" },
       { protocol: "https", hostname: "venueonmyplate.in" },
     ],
   },

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ArrowRight, ChevronDown, Crown, MapPin, Menu, Phone, Search, X } from "lucide-react";
+import { ArrowRight, ChevronDown, MapPin, Menu, Phone, Search, X } from "lucide-react";
 import Logo from "./Logo";
 import { cn } from "@/lib/utils";
 
@@ -209,10 +209,10 @@ export default function Header() {
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_160%_at_50%_0%,rgba(212,164,55,0.28),transparent_70%)]"
         />
         <p className="relative mx-auto flex max-w-[1280px] flex-wrap items-center justify-center gap-x-2 gap-y-1 px-4 py-2 text-[9px] font-semibold tracking-[0.2em] uppercase sm:text-[10px] md:text-[11px]">
-          <Crown size={12} strokeWidth={1.8} className="text-[#d4a437]" aria-hidden="true" />
+          <span aria-hidden="true" className="text-[13px] leading-none text-[#d4a437]">❖</span>
           Padharo Sa
           <span aria-hidden="true" className="text-[#d4a437]">◆</span>
-          Royal venue atelier · Rajasthan &amp; beyond
+          Royal wedding atelier · Rajasthan &amp; beyond
           <span aria-hidden="true" className="hidden text-[#d4a437] sm:inline">◆</span>
           <a
             href="tel:+919462460555"
@@ -233,7 +233,11 @@ export default function Header() {
       >
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 opacity-[0.035] [background-image:radial-gradient(circle_at_1px_1px,#7f0f2e_1px,transparent_0)] [background-size:18px_18px]"
+          className="pointer-events-none absolute inset-0 opacity-[0.05] [background-image:linear-gradient(45deg,transparent_46%,#7f0f2e_47%,#7f0f2e_53%,transparent_54%),linear-gradient(-45deg,transparent_46%,#7f0f2e_47%,#7f0f2e_53%,transparent_54%)] [background-size:24px_24px]"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 h-full bg-[radial-gradient(80%_120%_at_50%_0%,rgba(255,253,248,0.9),rgba(255,253,248,0.35)_70%,transparent)]"
         />
         <div
           aria-hidden="true"
@@ -254,14 +258,6 @@ export default function Header() {
           </div>
 
           <div className="relative flex items-center justify-center">
-            <span
-              aria-hidden="true"
-              className="absolute top-1/2 left-1/2 h-[88px] w-[244px] -translate-x-1/2 -translate-y-[46%] rounded-t-[130px] border-x border-t border-[#d4a437]/25 md:h-[104px] md:w-[304px]"
-            />
-            <span
-              aria-hidden="true"
-              className="absolute top-[2px] left-1/2 h-1.5 w-1.5 -translate-x-1/2 rotate-45 bg-[#d4a437]/70 md:top-[5px]"
-            />
             <Logo tone="dark" align="center" />
           </div>
 
@@ -306,7 +302,7 @@ export default function Header() {
               href="/contact"
               className="s-btn-dark btn-sheen ml-1.5 hidden items-center gap-1.5 px-5 py-2.5 font-display text-[15px] font-semibold whitespace-nowrap shadow-[0_10px_24px_-14px_rgba(92,10,32,0.7)] xl:inline-flex"
             >
-              Plan your event
+              Request a proposal
               <ArrowRight size={14} />
             </Link>
           </div>
@@ -330,7 +326,7 @@ export default function Header() {
         >
           <div
             aria-hidden="true"
-            className="pointer-events-none fixed inset-0 opacity-20 [background-image:radial-gradient(circle_at_1px_1px,#f6de9a_1px,transparent_0)] [background-size:16px_16px]"
+            className="pointer-events-none fixed inset-0 opacity-10 [background-image:linear-gradient(45deg,transparent_46%,#f6de9a_47%,#f6de9a_53%,transparent_54%),linear-gradient(-45deg,transparent_46%,#f6de9a_47%,#f6de9a_53%,transparent_54%)] [background-size:26px_26px]"
           />
           <div className="relative min-h-full">
             <div className="h-[3px] bg-[linear-gradient(90deg,#5c0a20,#d4a437,#f6de9a,#d4a437,#5c0a20)]" />
@@ -350,8 +346,8 @@ export default function Header() {
               </div>
 
               <div className="flex items-center gap-2 text-[10px] font-bold tracking-[0.28em] text-[#d4a437] uppercase">
-                <Crown size={13} />
-                Royal menu
+                <span aria-hidden="true" className="text-[13px] leading-none">❖</span>
+                The royal collection
                 <span className="h-px flex-1 bg-gradient-to-r from-[#d4a437]/60 to-transparent" />
               </div>
 
@@ -394,7 +390,7 @@ export default function Header() {
                   onClick={() => setOpen(false)}
                   className="flex items-center justify-center gap-2 rounded-full border border-[#d4a437]/60 bg-[#fdf3d7] px-6 py-3.5 font-display text-[16px] font-semibold text-[#5c0a20]"
                 >
-                  Plan your event
+                  Request a proposal
                   <ArrowRight size={15} />
                 </Link>
                 <a

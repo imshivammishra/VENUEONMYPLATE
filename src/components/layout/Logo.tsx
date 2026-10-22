@@ -25,14 +25,22 @@ export default function Logo({
         align === "center" && "justify-center text-center"
       )}
     >
-      <span className="relative shrink-0">
+      <span className="relative flex shrink-0 items-center justify-center px-1.5 pt-1">
         <span
           aria-hidden="true"
-          className="absolute inset-0 rounded-full bg-[#d4a437]/18 blur-xl transition-opacity duration-500 group-hover:opacity-100 md:opacity-60"
+          className="absolute -inset-x-1 -top-2 bottom-0 rounded-t-full border-x border-t border-[#c6962f]/55 md:-inset-x-2 md:-top-3 md:bottom-0"
         />
         <span
           aria-hidden="true"
-          className="absolute inset-0 rounded-full border border-[#d4a437]/35 shadow-[inset_0_0_0_3px_rgba(255,253,248,0.55)]"
+          className="absolute -bottom-1.5 left-1/2 h-px w-[calc(100%+14px)] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#d4a437]/90 to-transparent"
+        />
+        <span
+          aria-hidden="true"
+          className="absolute -top-2.5 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rotate-45 border border-[#a67c1a]/85 bg-[#fff8e7] md:-top-4"
+        />
+        <span
+          aria-hidden="true"
+          className="absolute inset-1 rounded-full bg-[#d4a437]/16 blur-lg transition-opacity duration-500 group-hover:opacity-100 md:opacity-70"
         />
         <Image
           src={src}
@@ -42,12 +50,12 @@ export default function Logo({
           priority
           unoptimized
           className={cn(
-            "relative shrink-0 object-contain transition-transform duration-500 ease-out group-hover:scale-[1.035]",
+            "relative shrink-0 object-contain transition-transform duration-500 ease-out group-hover:scale-[1.025]",
             full
               ? "h-24 w-24 md:h-[116px] md:w-[116px]"
               : compact
                 ? "h-11 w-11"
-                : "h-[58px] w-[58px] md:h-[80px] md:w-[80px]"
+                : "h-[58px] w-[58px] md:h-[76px] md:w-[76px]"
           )}
         />
       </span>
@@ -61,8 +69,8 @@ export default function Logo({
         >
           <span
             className={cn(
-              "font-display leading-[0.8] font-semibold tracking-[0.01em] whitespace-nowrap transition-colors duration-300",
-              full ? "text-[38px] md:text-[48px]" : "text-[29px] md:text-[38px]",
+              "font-display leading-[0.78] font-semibold tracking-[0.005em] whitespace-nowrap transition-colors duration-300",
+              full ? "text-[38px] md:text-[48px]" : "text-[29px] md:text-[40px]",
               tone === "light" ? "text-white" : "text-[#5c0a20] group-hover:text-[#7f0f2e]"
             )}
           >
@@ -77,7 +85,7 @@ export default function Logo({
           >
             <span
               aria-hidden="true"
-              className="h-px flex-1 bg-gradient-to-r from-transparent to-[#d4a437]/70"
+              className="h-px flex-1 bg-gradient-to-r from-transparent to-[#d4a437]/80"
             />
             <span
               className={cn(
@@ -92,8 +100,16 @@ export default function Logo({
             </span>
             <span
               aria-hidden="true"
-              className="h-px flex-1 bg-gradient-to-l from-transparent to-[#d4a437]/70"
+              className="h-px flex-1 bg-gradient-to-l from-transparent to-[#d4a437]/80"
             />
+          </span>
+          <span
+            className={cn(
+              "mt-1.5 hidden text-[7px] font-semibold tracking-[0.28em] uppercase md:block",
+              tone === "light" ? "text-[#f6de9a]/70" : "text-[#a67c1a]/75"
+            )}
+          >
+            Royal wedding atelier
           </span>
         </span>
       )}

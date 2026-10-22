@@ -3,7 +3,6 @@ import localFont from "next/font/local";
 import ConciergeChat from "@/components/chat/ConciergeChat";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
-import WelcomeNotice from "@/components/chat/WelcomeNotice";
 import { getVenues } from "@/lib/api";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/utils";
@@ -73,7 +72,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <main id="main">{children}</main>
         <Footer />
         <ConciergeChat venues={venues} />
-        <WelcomeNotice />
       </body>
     </html>
   );
