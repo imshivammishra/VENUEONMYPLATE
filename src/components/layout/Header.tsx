@@ -207,7 +207,7 @@ export default function Header() {
 
           {/* Center — brand logo, always optically centred */}
           <div className="flex items-center justify-center">
-            <Logo tone="dark" align="center" textOnly />
+            <Logo tone="dark" align="center" />
           </div>
 
           {/* Right — secondary nav + actions */}
@@ -275,7 +275,7 @@ export default function Header() {
         >
           <div className="flex h-full flex-col">
             <div className="flex items-center justify-between px-4 py-3">
-              <Logo tone="dark" textOnly />
+              <Logo tone="dark" />
               <button
                 type="button"
                 onClick={() => setOpen(false)}
