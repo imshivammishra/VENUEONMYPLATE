@@ -1,6 +1,14 @@
 import type { NextConfig } from "next";
 
-const apiInternal = (process.env.API_INTERNAL_URL || "http://localhost:8081").replace(/\/+$/, "");
+const apiInternal = (process.env.API_INTERNAL_URL || "http://localhost:3101").replace(/\/+$/, "");
+
+// `upgrade-insecure-requests` tells the browser to rewrite every HTTP
+// subresource (CSS, JS, images) to HTTPS. That is correct behind TLS, but it
+// makes the site render as unstyled HTML when it is opened directly over
+// HTTP (for example http://<server-ip>:3100). Keep it opt-in so plain-HTTP
+// deployments work, and enable it explicitly once HTTPS is configured.
+const upgradeInsecureRequests =
+  process.env.CSP_UPGRADE_INSECURE_REQUESTS === "1" ? ["upgrade-insecure-requests"] : [];
 
 const contentSecurityPolicy = [
   "default-src 'self'",
@@ -15,7 +23,7 @@ const contentSecurityPolicy = [
   "media-src 'self' https:",
   "connect-src 'self' https:",
   "frame-src 'none'",
-  "upgrade-insecure-requests",
+  ...upgradeInsecureRequests,
 ].join("; ");
 
 const securityHeaders = [

@@ -40,6 +40,7 @@ jobs:
         run: npm run build
         env:
           NEXT_TELEMETRY_DISABLED: "1"
-          API_INTERNAL_URL: http://127.0.0.1:8081
+          API_INTERNAL_URL: http://127.0.0.1:3101
           NEXT_PUBLIC_API_URL: /
           NEXT_PUBLIC_SITE_URL: https://venueonmyplate.in
+          CSP_UPGRADE_INSECURE_REQUESTS: "0"

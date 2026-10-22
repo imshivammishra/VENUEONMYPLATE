@@ -24,14 +24,14 @@ cp .env.example .env.local
 npm run dev
 ```
 
-The site runs at <http://localhost:3000>. Run the API from the separate
-`Venue-Workspace` repository at <http://localhost:8081>. For local development,
+The site runs at <http://localhost:3100>. Run the API from the separate
+`Venue-Workspace` repository at <http://localhost:3101>. For local development,
 set these values in `.env.local`:
 
 ```env
 NEXT_PUBLIC_API_URL=/
-API_INTERNAL_URL=http://localhost:8081
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
+API_INTERNAL_URL=http://localhost:3101
+NEXT_PUBLIC_SITE_URL=http://localhost:3100
 ```
 
 Browser requests stay on the website origin (`/api`); Next.js proxies them to
@@ -77,11 +77,13 @@ VENUEONMYPLATE/
 ```env
 # Browser requests use same-origin /api; server reads use the private API.
 NEXT_PUBLIC_API_URL=/
-API_INTERNAL_URL=http://127.0.0.1:8081
+API_INTERNAL_URL=http://127.0.0.1:3101
 NEXT_PUBLIC_SITE_URL=https://venueonmyplate.in
+# Keep 0 for plain HTTP (IP address or local dev). Set 1 behind HTTPS.
+CSP_UPGRADE_INSECURE_REQUESTS=0
 ```
 
-For local development use `API_INTERNAL_URL=http://localhost:8081` and keep
+For local development use `API_INTERNAL_URL=http://localhost:3101` and keep
 `NEXT_PUBLIC_API_URL=/`. Next.js proxies browser API calls to the private API,
 so the site works on `localhost`, a LAN address or a preview host. Environment
 files are never committed.
@@ -96,16 +98,42 @@ files are never committed.
 
 ## Deployment
 
-This repository is deployed with `Venue-Workspace`:
+**Current phase:** website, admin and API run on the VPS. The production SQLite
+database is freshly seeded and has no real venues yet, so the public site shows
+its built-in fallback catalogue. The 642-venue legacy catalogue remains in the
+separate Docker Postgres stack, untouched, until a data migration is approved.
+Admin runs on port `3102` over plain HTTP; restrict it or add HTTPS promptly.
 
-1. Clone both repositories on the VPS.
-2. Follow [`Venue-Workspace/deploy/README.md`](../Venue-Workspace/deploy/README.md).
-3. The website listens on `127.0.0.1:3000`; Nginx terminates TLS for
-   `dev.venueonmyplate.com` (staging) or `venueonmyplate.in` (production).
-4. `/api/*` and `/uploads/*` are proxied to the API on `127.0.0.1:8081`.
-   The staging API host is `dev.api.venueonmyplate.com`.
+This repository is the public website (`VOMP-MAIN`) in the current Contabo
+layout:
 
-No Vercel dependency. The production deployment is Nginx + PM2 on Contabo.
+1. Both repositories are checked out under `/opt/vomp-deploy`:
+   `main-website` (this repo) and `admin-backend` (API + admin).
+2. Shared env, SQLite data, uploads, logs and backups live in
+   `/opt/vomp-deploy/shared`.
+3. The website runs on port `3100` under PM2 process `VOMP-MAIN`; the API runs
+   privately on `127.0.0.1:3101` and the admin console on `3102`.
+4. `/api/*` and `/uploads/*` are proxied by Next.js to the private API.
+5. The full guide is
+   [`VOMP-DEPLOYMENT-GUIDE.md`](https://github.com/imshivammishra/VOMP-ADMIN/blob/main/deploy/VOMP-DEPLOYMENT-GUIDE.md)
+   in the admin repository, and on the server at
+   `/opt/vomp-deploy/VOMP-DEPLOYMENT-GUIDE.md`.
+
+Deploy manually:
+
+```bash
+cd /opt/vomp-deploy/main-website
+git pull --ff-only
+bash /opt/vomp-deploy/admin-backend/deploy/scripts/deploy-main.sh
+```
+
+The `Deploy website` GitHub Actions workflow does the same after its verify job
+passes. It requires the `VPS_HOST`, `VPS_USER` and `VPS_SSH_KEY` repository
+secrets. Until HTTPS is configured, keep `CSP_UPGRADE_INSECURE_REQUESTS=0`;
+otherwise browsers rewrite CSS/JS requests to HTTPS and the site appears
+unstyled.
+
+No Vercel dependency. The production deployment is PM2 on Contabo.
 
 ## Health check
 

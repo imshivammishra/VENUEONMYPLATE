@@ -1,0 +1,93 @@
+name: Deploy website
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: website-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Verify before deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Type-check
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"
+          NEXT_PUBLIC_API_URL: /
+          API_INTERNAL_URL: http://127.0.0.1:3101
+          NEXT_PUBLIC_SITE_URL: https://venueonmyplate.in
+          CSP_UPGRADE_INSECURE_REQUESTS: "0"
+
+  deploy:
+    name: Deploy to Contabo VPS
+    needs: verify
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: production
+    steps:
+      - name: Check deployment secrets
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          missing=0
+          for name in VPS_HOST VPS_USER VPS_SSH_KEY; do
+            if [ -z "${!name}" ]; then
+              echo "::error::Missing GitHub secret ${name}"
+              missing=1
+            fi
+          done
+          exit "${missing}"
+
+      - name: Install SSH key
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_PORT: ${{ secrets.VPS_PORT }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "${VPS_SSH_KEY}" > ~/.ssh/vomp_deploy
+          chmod 600 ~/.ssh/vomp_deploy
+          port="${VPS_PORT:-22}"
+          ssh-keyscan -p "${port}" -H "${VPS_HOST}" >> ~/.ssh/known_hosts
+
+      - name: Pull and deploy website
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_PORT: ${{ secrets.VPS_PORT }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          port="${VPS_PORT:-22}"
+          ssh -i ~/.ssh/vomp_deploy -p "${port}" \
+            -o BatchMode=yes -o ConnectTimeout=15 -o ServerAliveInterval=30 \
+            "${VPS_USER}@${VPS_HOST}" \
+            "set -e; cd /opt/vomp-deploy/main-website; git pull --ff-only; bash /opt/vomp-deploy/admin-backend/deploy/scripts/deploy-main.sh"
