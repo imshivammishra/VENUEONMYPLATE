@@ -36,13 +36,15 @@ export default function VenueCard({ venue, index = 0 }: { venue: import("@/types
           <p className="text-[13px] font-semibold text-[#6e6e73]">
             {venue.city} · {venue.type}
           </p>
-          <h3 className="mt-1 line-clamp-2 min-h-[3.35rem] text-[21px] leading-snug font-bold tracking-tight text-[#1d1d1f]">
+          <h3 className="mt-1 line-clamp-2 min-h-[3.6rem] text-[21px] leading-snug font-bold tracking-tight text-[#1d1d1f]">
             <Link href={`/venues/${venue.slug}`}>
               {venue.name}
             </Link>
           </h3>
-          <p className="mt-1 text-[14px] text-[#6e6e73]">
-            {venue.area} · {formatGuests(venue.capacityMin, venue.capacityMax)}
+          <p className="mt-1 flex min-w-0 items-center justify-center gap-1.5 text-[14px] text-[#6e6e73]">
+            <span className="min-w-0 truncate">{venue.area}</span>
+            <span aria-hidden="true" className="shrink-0 text-[#b8b8bd]">·</span>
+            <span className="shrink-0">{formatGuests(venue.capacityMin, venue.capacityMax)}</span>
           </p>
           <div className="mt-auto flex items-center justify-center gap-5 pt-5">
             <Link href={`/venues/${venue.slug}`} className="text-[14px] text-[#1d1d1f] underline decoration-black/30 underline-offset-4 hover:decoration-black">

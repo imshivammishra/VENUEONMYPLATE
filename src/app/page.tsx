@@ -87,9 +87,9 @@ const STEPS = [
 ];
 
 const FILMS = [
-  { src: "/videos/hero-bg.mp4", poster: "/images/indian-ceremony.jpg", startAt: 0, caption: "Haldi mornings" },
-  { src: "/videos/hero-bg.mp4", poster: "/images/wedding-decor.jpg", startAt: 7, caption: "Floral details" },
-  { src: "/videos/hero-bg.mp4", poster: "/images/wedding-decor.jpg", startAt: 14, caption: "First looks" },
+  { src: "/videos/film-haldi.mp4", poster: "/images/indian-ceremony.jpg", startAt: 0, caption: "Haldi mornings" },
+  { src: "/videos/film-floral.mp4", poster: "/images/wedding-decor.jpg", startAt: 0, caption: "Floral details" },
+  { src: "/videos/film-first-look.mp4", poster: "/images/wedding-dance.jpg", startAt: 0, caption: "First looks" },
   { src: "/videos/hero-bg.mp4", poster: "/images/wedding-dance.jpg", startAt: 21, caption: "Aisle walks" },
 ];
 
