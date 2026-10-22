@@ -46,15 +46,11 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   experimental: { optimizePackageImports: ["lucide-react"] },
   images: {
-    // Serve the already-optimised venue assets directly. This avoids cold
-    // image-optimizer jobs on catalogue pages with hundreds of cards.
-    unoptimized: true,
-    formats: ["image/avif", "image/webp"],
-    qualities: [60, 65, 70, 75],
-    remotePatterns: [
-      { protocol: "https", hostname: "vomp-media.s3.ap-south-1.amazonaws.com" },
-      { protocol: "https", hostname: "venueonmyplate.in" },
-    ],
+    // Route venue photography through our own origin. Some guest networks
+    // block the S3 host directly, which left cards blank even though the
+    // assets were healthy. Local artwork is returned unchanged by the loader.
+    loader: "custom",
+    loaderFile: "./src/lib/image-loader.ts",
   },
   async rewrites() {
     return [

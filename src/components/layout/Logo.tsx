@@ -14,6 +14,7 @@ export default function Logo({
   align?: "start" | "center";
 }) {
   const src = full ? "/images/brand-logo.png" : "/images/brand-logo-256.png";
+  const light = tone === "light";
 
   return (
     <Link
@@ -25,39 +26,39 @@ export default function Logo({
         align === "center" && "justify-center text-center"
       )}
     >
-      <span className="relative flex shrink-0 items-center justify-center px-1.5 pt-1">
+      <span className="relative shrink-0">
         <span
           aria-hidden="true"
-          className="absolute -inset-x-1 -top-2 bottom-0 rounded-t-full border-x border-t border-[#c6962f]/55 md:-inset-x-2 md:-top-3 md:bottom-0"
-        />
-        <span
-          aria-hidden="true"
-          className="absolute -bottom-1.5 left-1/2 h-px w-[calc(100%+14px)] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#d4a437]/90 to-transparent"
-        />
-        <span
-          aria-hidden="true"
-          className="absolute -top-2.5 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rotate-45 border border-[#a67c1a]/85 bg-[#fff8e7] md:-top-4"
-        />
-        <span
-          aria-hidden="true"
-          className="absolute inset-1 rounded-full bg-[#d4a437]/16 blur-lg transition-opacity duration-500 group-hover:opacity-100 md:opacity-70"
-        />
-        <Image
-          src={src}
-          alt="Venue On My Plate"
-          width={full ? 480 : 420}
-          height={full ? 480 : 420}
-          priority
-          unoptimized
           className={cn(
-            "relative shrink-0 object-contain transition-transform duration-500 ease-out group-hover:scale-[1.025]",
-            full
-              ? "h-24 w-24 md:h-[116px] md:w-[116px]"
-              : compact
-                ? "h-11 w-11"
-                : "h-[58px] w-[58px] md:h-[76px] md:w-[76px]"
+            "absolute -inset-1 rounded-full border md:-inset-1.5",
+            light ? "border-[#e7c77e]/45" : "border-[#c6a04a]/40"
           )}
         />
+        <span
+          className={cn(
+            "relative grid place-items-center rounded-full border p-[2px] shadow-[0_8px_24px_-10px_rgba(0,0,0,0.45)] md:p-[3px]",
+            light
+              ? "border-[#e7c77e]/75 bg-[#fff8e8]"
+              : "border-[#c6a04a]/65 bg-[#fffaf0]"
+          )}
+        >
+          <Image
+            src={src}
+            alt="Venue On My Plate"
+            width={full ? 480 : 420}
+            height={full ? 480 : 420}
+            priority
+            unoptimized
+            className={cn(
+              "relative shrink-0 rounded-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.025]",
+              full
+                ? "h-[96px] w-[96px] md:h-[112px] md:w-[112px]"
+                : compact
+                  ? "h-10 w-10"
+                  : "h-[56px] w-[56px] md:h-[72px] md:w-[72px]"
+            )}
+          />
+        </span>
       </span>
 
       {!compact && (
@@ -71,7 +72,9 @@ export default function Logo({
             className={cn(
               "font-display leading-[0.78] font-semibold tracking-[0.005em] whitespace-nowrap transition-colors duration-300",
               full ? "text-[38px] md:text-[48px]" : "text-[29px] md:text-[40px]",
-              tone === "light" ? "text-white" : "text-[#5c0a20] group-hover:text-[#7f0f2e]"
+              light
+                ? "text-[#fff8e8] group-hover:text-[#f1d58c]"
+                : "text-[#4a0719] group-hover:text-[#7f0f2e]"
             )}
           >
             Venue
@@ -85,7 +88,12 @@ export default function Logo({
           >
             <span
               aria-hidden="true"
-              className="h-px flex-1 bg-gradient-to-r from-transparent to-[#d4a437]/80"
+              className={cn(
+                "h-px flex-1",
+                light
+                  ? "bg-gradient-to-r from-transparent to-[#e7c77e]"
+                  : "bg-gradient-to-r from-transparent to-[#c6a04a]"
+              )}
             />
             <span
               className={cn(
@@ -93,23 +101,29 @@ export default function Logo({
                 full
                   ? "text-[11px] tracking-[0.38em] md:text-[13px] md:tracking-[0.4em]"
                   : "text-[8px] tracking-[0.3em] md:text-[9px] md:tracking-[0.34em]",
-                tone === "light" ? "text-[#f6de9a]" : "text-[#a67c1a]"
+                light ? "text-[#f1d58c]" : "text-[#a67c1a]"
               )}
             >
               On My Plate
             </span>
             <span
               aria-hidden="true"
-              className="h-px flex-1 bg-gradient-to-l from-transparent to-[#d4a437]/80"
+              className={cn(
+                "h-px flex-1",
+                light
+                  ? "bg-gradient-to-l from-transparent to-[#e7c77e]"
+                  : "bg-gradient-to-l from-transparent to-[#c6a04a]"
+              )}
             />
           </span>
           <span
             className={cn(
-              "mt-1.5 hidden text-[7px] font-semibold tracking-[0.28em] uppercase md:block",
-              tone === "light" ? "text-[#f6de9a]/70" : "text-[#a67c1a]/75"
+              "mt-1.5 text-[6.5px] font-semibold tracking-[0.22em] uppercase md:text-[7px]",
+              light ? "text-[#e7c77e]/80" : "text-[#a67c1a]/80",
+              !full && "hidden md:block"
             )}
           >
-            Royal wedding atelier
+            Wedding &amp; celebration venues
           </span>
         </span>
       )}
