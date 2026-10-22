@@ -32,7 +32,9 @@ async function backend<T>(path: string, init?: RequestInit): Promise<T | null> {
 }
 
 export async function getVenues(): Promise<Venue[]> {
-  const remote = await backend<Venue[]>("/api/v1/public/venues");
+  // The explicit limit keeps the full published catalogue in the build cache
+  // even when the API's default page size changes.
+  const remote = await backend<Venue[]>("/api/v1/public/venues?limit=500");
   return remote && remote.length > 0 ? remote : venues;
 }
 
